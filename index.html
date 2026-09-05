@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>系统概览 - 应龙大模型推理平台</title>
     <link href="prototypes/assets/css/tailwind.css" rel="stylesheet">
+    <link href="prototypes/assets/css/theme.css" rel="stylesheet">
+    <script src="prototypes/assets/js/theme.js"></script>
     <style>
         :root {
             --brand: #266eff;
@@ -198,7 +200,7 @@
         .kpi-unit { color: var(--muted); font-size: 11px; }
         .kpi-meta { margin-top: 3px; color: var(--muted); font-size: 10px; white-space: nowrap; }
 
-        .risk-panel { display: grid; grid-template-columns: minmax(240px, 1.05fr) repeat(2, minmax(220px, 1fr)); overflow: hidden; }
+        .risk-panel { display: grid; grid-template-columns: minmax(240px, 1.05fr) repeat(3, minmax(190px, 1fr)); overflow: hidden; }
         .risk-lead { padding: 16px; border-right: 1px solid var(--border); background: #fffbeb; }
         .risk-kicker { display: flex; align-items: center; gap: 7px; color: #92400e; font-size: 12px; font-weight: 650; }
         .risk-title { margin: 5px 0 0; color: var(--ink); font-size: 15px; font-weight: 650; }
@@ -451,8 +453,20 @@
         .rule-toggle { display: inline-flex; align-items: center; gap: 6px; color: var(--text); font-size: 11px; white-space: nowrap; }
         .rule-toggle input { width: 16px; height: 16px; accent-color: var(--brand); }
         .rule-fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+        .rule-field.full { grid-column: 1 / -1; }
         .rule-field label { display: block; margin-bottom: 4px; color: var(--muted); font-size: 10px; font-weight: 600; }
         .rule-field .control { width: 100%; padding-right: 10px; }
+        .rule-fixed-value { display: flex; min-height: 34px; align-items: center; gap: 5px; padding: 0 10px; border: 1px solid var(--border); border-radius: 6px; color: var(--text); background: #f8fafc; font-size: 11px; }
+        .rule-fixed-value strong { color: var(--ink); font: 700 13px/1 var(--font-mono); }
+        .device-whitelist-entry { display: flex; align-items: center; gap: 8px; }
+        .device-whitelist-entry .control { flex: 1; min-width: 0; }
+        .device-whitelist-help { margin: 5px 0 0; color: var(--muted); font-size: 10px; line-height: 16px; }
+        .device-whitelist { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .device-whitelist-empty { color: var(--muted); font-size: 10px; line-height: 26px; }
+        .device-whitelist-item { display: inline-flex; align-items: center; gap: 5px; min-height: 26px; padding: 2px 4px 2px 8px; border: 1px solid #bfdbfe; border-radius: 999px; color: #1d4ed8; background: #eff6ff; font: 10px/18px var(--font-mono); }
+        .device-whitelist-remove { min-height: 20px; padding: 0 6px; border: 0; border-radius: 999px; color: #64748b; background: transparent; font-size: 10px; }
+        .device-whitelist-remove:hover { color: var(--danger); background: #fff1f2; }
+        .rule-inline-error { min-height: 16px; margin: 3px 0 0; color: var(--danger); font-size: 10px; }
         .rule-error { margin: 0; color: var(--danger); font-size: 11px; }
         .rule-error.hidden { display: none; }
         .modal-actions { display: flex; gap: 8px; }
@@ -629,7 +643,6 @@
                 <a class="nav-item" href="prototypes/sys_model_repo.html"><svg class="icon"><use href="#i-box"/></svg><span>模型资产</span></a>
                 <a class="nav-item" href="prototypes/sys_model_service.html"><svg class="icon"><use href="#i-server"/></svg><span>模型服务</span></a>
                 <a class="nav-item" href="prototypes/sys_model_training.html"><svg class="icon"><use href="#i-brain"/></svg><span>模型训练</span></a>
-                <a class="nav-item" href="prototypes/sys_model_governance.html"><svg class="icon"><use href="#i-check-user"/></svg><span>模型纳管</span></a>
                 <a class="nav-item" href="prototypes/sys_model_monitor.html"><svg class="icon"><use href="#i-activity"/></svg><span>模型监测</span></a>
             </div>
             <div class="nav-group">
@@ -679,8 +692,9 @@
             <section class="section" aria-labelledby="riskTitle">
                 <div class="section-heading"><h2 class="section-title" id="riskTitle"><span class="section-dot"></span>预警风险</h2><button class="btn" type="button" id="openAlertRules"><svg class="icon"><use href="#i-settings"/></svg>预警规则配置</button></div>
                 <div class="panel risk-panel">
-                    <div class="risk-lead"><div class="risk-kicker"><svg class="icon"><use href="#i-alert"/></svg>当前有 2 项运行预警</div><div class="risk-title">节点健康与模型 SLA 存在异常</div></div>
+                    <div class="risk-lead"><div class="risk-kicker"><svg class="icon"><use href="#i-alert"/></svg>当前有 3 项运行预警</div><div class="risk-title">节点、任务与模型 SLA 存在异常</div></div>
                     <div class="risk-item"><div class="risk-meta"><span class="risk-name">gpu-node-23</span><span class="badge badge-danger">节点异常</span></div><div class="risk-value" style="color:var(--danger)">18 分钟</div><div class="risk-desc">最后心跳 14:14，承载 2 个实例</div><a class="text-link" href="prototypes/sys_node_mgmt.html?status=error">定位节点 →</a></div>
+                    <div class="risk-item"><div class="risk-meta"><span class="risk-name">knowledge-rag</span><span class="badge badge-warning">任务预警</span></div><div class="risk-value">3.26%</div><div class="risk-desc">失败 41 / 1,258 次，超过 2% 阈值</div><a class="text-link" href="prototypes/sys_task_detail.html?task=knowledge-rag&amp;source=overview">查看任务 →</a></div>
                     <div class="risk-item"><div class="risk-meta"><span class="risk-name">qwen3-32b</span><span class="badge badge-warning">SLA 预警</span></div><div class="risk-value">2.84%</div><div class="risk-desc">近 1 小时失败率超过 2% 阈值</div><a class="text-link" href="prototypes/sys_model_monitor.html?model=qwen3-32b&amp;time=1h&amp;tab=task&amp;source=overview">诊断模型请求 →</a></div>
                 </div>
             </section>
@@ -755,7 +769,7 @@
 
 <div class="modal-backdrop hidden" id="alertRulesModal" role="dialog" aria-modal="true" aria-labelledby="alertRulesTitle">
     <div class="modal modal-sm">
-        <div class="modal-header"><div><h2 class="modal-title" id="alertRulesTitle">预警规则配置</h2><p class="rule-card-copy">配置系统概览中节点与模型预警的触发条件。</p></div><button class="btn btn-icon" type="button" id="closeAlertRules" aria-label="关闭预警规则配置"><svg class="icon"><use href="#i-x"/></svg></button></div>
+        <div class="modal-header"><div><h2 class="modal-title" id="alertRulesTitle">预警规则配置</h2><p class="rule-card-copy">配置系统概览中节点、任务与模型预警的触发条件。</p></div><button class="btn btn-icon" type="button" id="closeAlertRules" aria-label="关闭预警规则配置"><svg class="icon"><use href="#i-x"/></svg></button></div>
         <div class="modal-body rule-settings">
             <p class="rule-settings-intro">告警级别将根据持续时间或指标阈值自动判定，修改后对全部生产集群生效。</p>
             <article class="rule-card" id="nodeRuleCard">
@@ -764,6 +778,23 @@
                     <div class="rule-field"><label for="nodeWarningThreshold">警告阈值（分钟）</label><input class="control" id="nodeWarningThreshold" type="number" min="1" value="10"></div>
                     <div class="rule-field"><label for="nodeCriticalThreshold">严重阈值（分钟）</label><input class="control" id="nodeCriticalThreshold" type="number" min="2" value="15"></div>
                     <div class="rule-field"><label for="nodeScope">生效范围</label><select class="control" id="nodeScope"><option>全部生产集群</option><option>生产集群 A</option><option>生产集群 B</option></select></div>
+                </div>
+            </article>
+            <article class="rule-card" id="deviceLossRuleCard">
+                <div class="rule-card-head"><div><h3 class="rule-card-title">设备掉卡</h3><p class="rule-card-copy">单台机器检测到的设备卡少于 8 张时，触发节点异常预警；白名单设备不参与检测。</p></div><label class="rule-toggle"><input id="deviceLossRuleEnabled" type="checkbox" checked>已启用</label></div>
+                <div class="rule-fields">
+                    <div class="rule-field"><label>预警条件</label><div class="rule-fixed-value"><strong>&lt; 8</strong><span>张 / 台</span></div></div>
+                    <div class="rule-field"><label for="deviceLossScope">生效范围</label><select class="control" id="deviceLossScope"><option>全部生产集群</option><option>生产集群 A</option><option>生产集群 B</option></select></div>
+                    <div class="rule-field"><label>检测对象</label><div class="rule-fixed-value"><span>单台机器实时在线卡数</span></div></div>
+                    <div class="rule-field full"><label for="deviceWhitelistInput">设备白名单（节点名称或 IP）</label><div class="device-whitelist-entry"><input class="control" id="deviceWhitelistInput" maxlength="64" placeholder="例如 gpu-node-test-01 或 10.24.16.30" aria-describedby="deviceWhitelistHelp deviceWhitelistError"><button class="btn" type="button" id="addDeviceWhitelist">添加</button></div><p class="device-whitelist-help" id="deviceWhitelistHelp">适用于非 8 卡标准配置、测试设备或临时维护节点。</p><p class="rule-inline-error" id="deviceWhitelistError" role="alert"></p><div class="device-whitelist" id="deviceWhitelist" role="list" aria-label="已添加的设备白名单"></div></div>
+                </div>
+            </article>
+            <article class="rule-card" id="taskRuleCard">
+                <div class="rule-card-head"><div><h3 class="rule-card-title">任务失败率</h3><p class="rule-card-copy">单个任务在指定时间窗口内的失败率超过 2% 时触发任务预警。</p></div><label class="rule-toggle"><input id="taskRuleEnabled" type="checkbox" checked>已启用</label></div>
+                <div class="rule-fields">
+                    <div class="rule-field"><label for="taskWarningThreshold">警告阈值（%）</label><input class="control" id="taskWarningThreshold" type="number" min="0.1" step="0.1" value="2.0"></div>
+                    <div class="rule-field"><label for="taskCriticalThreshold">严重阈值（%）</label><input class="control" id="taskCriticalThreshold" type="number" min="0.2" step="0.1" value="5.0"></div>
+                    <div class="rule-field"><label for="taskWindow">统计窗口</label><select class="control" id="taskWindow"><option value="5">近 5 分钟</option><option value="15">近 15 分钟</option><option value="30">近 30 分钟</option><option value="60" selected>近 1 小时</option></select></div>
                 </div>
             </article>
             <article class="rule-card" id="modelRuleCard">
@@ -947,6 +978,7 @@
     const state = { currentGpu: 'NVIDIA A100', cluster: 'all', nodeIp: 'all', page: 1, pageSize: 5 };
     const byId = id => document.getElementById(id);
     const unique = values => [...new Set(values)];
+    const deviceWhitelist = [];
 
     function showToast(title, copy) {
         byId('toastTitle').textContent = title;
@@ -1261,26 +1293,88 @@
         byId('alertRuleError').classList.add('hidden');
     }
 
+    function renderDeviceWhitelist() {
+        const container = byId('deviceWhitelist');
+        container.replaceChildren();
+        if (!deviceWhitelist.length) {
+            const empty = document.createElement('span');
+            empty.className = 'device-whitelist-empty';
+            empty.textContent = '暂无白名单设备';
+            container.appendChild(empty);
+            return;
+        }
+        deviceWhitelist.forEach(device => {
+            const item = document.createElement('span');
+            item.className = 'device-whitelist-item';
+            item.setAttribute('role', 'listitem');
+            const name = document.createElement('span');
+            name.textContent = device;
+            const remove = document.createElement('button');
+            remove.className = 'device-whitelist-remove';
+            remove.type = 'button';
+            remove.dataset.whitelistDevice = device;
+            remove.textContent = '移除';
+            remove.setAttribute('aria-label', `从设备白名单中移除 ${device}`);
+            remove.disabled = !byId('deviceLossRuleEnabled').checked;
+            item.append(name, remove);
+            container.appendChild(item);
+        });
+    }
+
+    function addDeviceToWhitelist() {
+        const input = byId('deviceWhitelistInput');
+        const device = input.value.trim();
+        const error = byId('deviceWhitelistError');
+        error.textContent = '';
+        input.removeAttribute('aria-invalid');
+        if (!device) {
+            error.textContent = '请输入节点名称或 IP 地址。';
+            input.setAttribute('aria-invalid', 'true');
+            input.focus();
+            return;
+        }
+        if (!/^[A-Za-z0-9][A-Za-z0-9._:-]{0,63}$/.test(device)) {
+            error.textContent = '仅支持字母、数字、点、短横线、下划线或冒号。';
+            input.setAttribute('aria-invalid', 'true');
+            input.focus();
+            return;
+        }
+        if (deviceWhitelist.some(item => item.toLowerCase() === device.toLowerCase())) {
+            error.textContent = '该设备已在白名单中。';
+            input.setAttribute('aria-invalid', 'true');
+            input.focus();
+            return;
+        }
+        deviceWhitelist.push(device);
+        input.value = '';
+        renderDeviceWhitelist();
+        input.focus();
+    }
+
     function updateRuleCard(toggleId, cardId) {
         const enabled = byId(toggleId).checked;
         const card = byId(cardId);
         card.classList.toggle('is-disabled', !enabled);
-        card.querySelectorAll('.rule-fields input, .rule-fields select').forEach(control => { control.disabled = !enabled; });
+        card.querySelectorAll('.rule-fields input, .rule-fields select, .rule-fields button').forEach(control => { control.disabled = !enabled; });
     }
 
     function saveAlertRules() {
         const nodeWarning = Number(byId('nodeWarningThreshold').value);
         const nodeCritical = Number(byId('nodeCriticalThreshold').value);
+        const taskWarning = Number(byId('taskWarningThreshold').value);
+        const taskCritical = Number(byId('taskCriticalThreshold').value);
         const modelWarning = Number(byId('modelWarningThreshold').value);
         const modelCritical = Number(byId('modelCriticalThreshold').value);
         const nodeInvalid = byId('nodeRuleEnabled').checked && (!nodeWarning || nodeCritical <= nodeWarning);
+        const taskInvalid = byId('taskRuleEnabled').checked && (!taskWarning || taskCritical <= taskWarning);
         const modelInvalid = byId('modelRuleEnabled').checked && (!modelWarning || modelCritical <= modelWarning);
-        if (nodeInvalid || modelInvalid) {
+        if (nodeInvalid || taskInvalid || modelInvalid) {
+            byId('alertRuleError').textContent = nodeInvalid ? '节点心跳规则的严重阈值必须大于警告阈值。' : taskInvalid ? '任务失败率的严重阈值必须大于警告阈值。' : '模型失败率的严重阈值必须大于警告阈值。';
             byId('alertRuleError').classList.remove('hidden');
             return;
         }
         closeAlertRules();
-        showToast('预警规则已保存', '节点与模型预警阈值已更新，新规则已对生产集群生效。');
+        showToast('预警规则已保存', `节点、设备掉卡、任务与模型规则已更新，当前设备白名单 ${deviceWhitelist.length} 项。`);
     }
 
     byId('resourceMasterList').addEventListener('click', event => {
@@ -1372,7 +1466,18 @@
     byId('saveAlertRules').addEventListener('click', saveAlertRules);
     byId('alertRulesModal').addEventListener('click', event => { if (event.target === byId('alertRulesModal')) closeAlertRules(); });
     byId('nodeRuleEnabled').addEventListener('change', () => updateRuleCard('nodeRuleEnabled', 'nodeRuleCard'));
+    byId('deviceLossRuleEnabled').addEventListener('change', () => { updateRuleCard('deviceLossRuleEnabled', 'deviceLossRuleCard'); renderDeviceWhitelist(); });
+    byId('taskRuleEnabled').addEventListener('change', () => updateRuleCard('taskRuleEnabled', 'taskRuleCard'));
     byId('modelRuleEnabled').addEventListener('change', () => updateRuleCard('modelRuleEnabled', 'modelRuleCard'));
+    byId('addDeviceWhitelist').addEventListener('click', addDeviceToWhitelist);
+    byId('deviceWhitelistInput').addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); addDeviceToWhitelist(); } });
+    byId('deviceWhitelist').addEventListener('click', event => {
+        const button = event.target.closest('[data-whitelist-device]');
+        if (!button) return;
+        const index = deviceWhitelist.indexOf(button.dataset.whitelistDevice);
+        if (index >= 0) deviceWhitelist.splice(index, 1);
+        renderDeviceWhitelist();
+    });
     byId('refreshButton').addEventListener('click', () => {
         const now = new Date();
         byId('refreshTime').textContent = `更新于 ${now.toLocaleTimeString('zh-CN', { hour12: false })}`;
@@ -1389,6 +1494,7 @@
     renderResourceMaster();
     renderResourceDetails();
     renderTaskCompute();
+    renderDeviceWhitelist();
 </script>
 </body>
 </html>

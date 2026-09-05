@@ -45,7 +45,6 @@
         { file: 'sys_model_repo.html', label: '模型资产', icon: 'fa-box' },
         { file: 'sys_model_training.html', label: '模型训练', icon: 'fa-brain' },
         { file: 'sys_model_service.html', label: '模型服务', icon: 'fa-server' },
-        { file: 'sys_model_governance.html', label: '模型纳管规范', icon: 'fa-clipboard-list' },
         { file: 'sys_model_monitor.html', label: '模型监测', icon: 'fa-chart-line' }
       ]
     },
@@ -82,7 +81,6 @@
     'sys_training_records.html': ['模型管理', '训练记录'],
     'sys_model_service.html': ['模型管理', '模型服务'],
     'sys_model_deploy.html': ['模型管理', '模型部署'],
-    'sys_model_governance.html': ['模型管理', '模型纳管规范'],
     'sys_model_monitor.html': ['模型管理', '模型监控'],
     'sys_resource_application.html': ['资源与运维', '资源申请'],
     'sys_resource_approval.html': ['资源与运维', '授权与审批'],

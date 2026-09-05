@@ -6,6 +6,8 @@
   <title>模型训练 - 应龙大模型推理平台</title>
   <link rel="stylesheet" href="assets/css/yinglong-v2.css">
   <link rel="stylesheet" href="assets/css/pages/model-management.css">
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <script src="assets/js/theme.js"></script>
 </head>
 <body class="sidebar-led heading-spec-page">
   <svg width="0" height="0" aria-hidden="true" style="position:absolute">
@@ -16,7 +18,7 @@
   <a class="skip-link" href="#main-content">跳到主要内容</a>
   <aside class="sidebar" aria-label="应龙主导航"><a class="brand" href="../index.html" aria-label="应龙 AI算力基座首页"><span class="brand-mark" aria-hidden="true"><img src="../doc/logo/icon_01.svg" alt=""></span><span class="brand-copy"><span class="brand-name">应龙</span><span class="brand-subtitle">AI算力基座</span></span></a><nav class="sidebar-nav">
     <section class="nav-group"><h2 class="nav-group-title">工作台</h2><a class="nav-item" href="../index.html"><svg class="icon"><use href="#i-dashboard"/></svg><span>系统概览</span></a></section><section class="nav-group"><h2 class="nav-group-title">算力调度</h2><a class="nav-item" href="sys_dispatch.html"><svg class="icon"><use href="#i-sliders"/></svg><span>算力调度</span></a><a class="nav-item" href="sys_task_list.html"><svg class="icon"><use href="#i-list"/></svg><span>我的任务</span></a></section>
-    <section class="nav-group"><h2 class="nav-group-title">模型管理</h2><a class="nav-item" href="sys_model_repo.html"><svg class="icon"><use href="#i-box"/></svg><span>模型资产</span></a><a class="nav-item" href="sys_model_service.html"><svg class="icon"><use href="#i-server"/></svg><span>模型服务</span></a><a class="nav-item active" href="sys_model_training.html" aria-current="page"><svg class="icon"><use href="#i-brain"/></svg><span>模型训练</span></a><a class="nav-item" href="sys_model_governance.html"><svg class="icon"><use href="#i-check-user"/></svg><span>模型纳管</span></a><a class="nav-item" href="sys_model_monitor.html"><svg class="icon"><use href="#i-activity"/></svg><span>模型监测</span></a></section>
+    <section class="nav-group"><h2 class="nav-group-title">模型管理</h2><a class="nav-item" href="sys_model_repo.html"><svg class="icon"><use href="#i-box"/></svg><span>模型资产</span></a><a class="nav-item" href="sys_model_service.html"><svg class="icon"><use href="#i-server"/></svg><span>模型服务</span></a><a class="nav-item active" href="sys_model_training.html" aria-current="page"><svg class="icon"><use href="#i-brain"/></svg><span>模型训练</span></a><a class="nav-item" href="sys_model_monitor.html"><svg class="icon"><use href="#i-activity"/></svg><span>模型监测</span></a></section>
     <section class="nav-group"><h2 class="nav-group-title">资源与运维</h2><a class="nav-item" href="sys_resource_application.html"><svg class="icon"><use href="#i-file"/></svg><span>资源申请</span></a><a class="nav-item" href="sys_resource_approval.html"><svg class="icon"><use href="#i-check-user"/></svg><span>授权审批</span></a><a class="nav-item" href="sys_infrastructure_mgmt.html"><svg class="icon"><use href="#i-network"/></svg><span>集群管理</span></a></section>
   </nav><div class="sidebar-foot"><div class="sidebar-version" tabindex="0" aria-describedby="sidebarVersionDetails"><span>系统版本</span><strong>v1.0.0</strong><span class="sidebar-version-popover" id="sidebarVersionDetails" role="tooltip"><strong>版本信息</strong><span><span>前端版本</span><b>v1.0.0</b></span><span><span>后端版本</span><b>v1.0.0</b></span></span></div></div></aside>
 
@@ -39,9 +41,15 @@
     <div class="modal-body">
       <section class="form-section"><h3 class="form-section-title">基础配置</h3><div class="form-grid">
         <div class="form-field"><label for="taskType">任务类型 <span class="required">*</span></label><select class="control" id="taskType"><option>文本分类</option><option>实体关系抽取</option></select></div>
-        <div class="form-field"><label for="dataset">训练数据集 <span class="required">*</span></label><div class="field-inline"><select class="control" id="dataset"><option>新闻分类训练集 v3</option><option>实体关系抽取训练集 v2</option><option>用户评论情感数据集 v2.1</option></select><button class="btn" type="button" onclick="document.getElementById('trainUploadInput').click()"><svg class="icon icon-sm"><use href="#i-upload"/></svg>点击上传训练集</button><input id="trainUploadInput" type="file" class="hidden"></div></div>
+        <div class="form-field"><label for="dataset">训练数据集 <span class="required">*</span></label><div class="field-inline"><select class="control" id="dataset"><option>新闻分类训练集 v3</option><option>实体关系抽取训练集 v2</option><option>用户评论情感数据集 v2.1</option></select><button class="btn" id="trainUploadButton" type="button" onclick="document.getElementById('trainUploadInput').click()"><svg class="icon icon-sm"><use href="#i-upload"/></svg>点击上传训练集</button><input id="trainUploadInput" type="file" class="hidden" accept=".json,.jsonl,.csv,application/json,text/csv" aria-label="选择训练数据集文件"></div></div>
         <div class="form-field"><label for="baseModel">基础模型 <span class="required">*</span></label><select class="control" id="baseModel"><option>Qwen3.5-27B</option><option>qwen3-32B</option><option>qwen3.5-9B</option></select></div>
         <div class="form-field"><label for="taskName">任务名称</label><input class="control" id="taskName" value="新闻分类模型训练"></div>
+        <section class="dataset-quality-panel hidden" id="datasetQualityPanel" aria-labelledby="datasetQualityTitle" aria-live="polite">
+          <div class="dataset-quality-head"><div class="dataset-quality-title"><svg class="icon icon-sm"><use href="#i-check"/></svg><div><strong id="datasetQualityTitle">数据质量与格式检测</strong><div class="dataset-quality-file" id="datasetQualityFile">--</div></div></div><span class="badge badge-info dataset-quality-status" id="datasetQualityStatus">待检测</span></div>
+          <div class="dataset-quality-state dataset-quality-checking hidden" id="datasetQualityChecking"><span class="dataset-quality-spinner" aria-hidden="true"></span><span>正在解析文件格式、字段完整性和标签分布…</span></div>
+          <div class="dataset-quality-state dataset-quality-result hidden" id="datasetQualityResult"></div>
+          <div class="dataset-quality-state dataset-quality-error hidden" id="datasetQualityError" role="alert"></div>
+        </section>
       </div></section>
       <section class="form-section training-resource-section"><h3 class="form-section-title">算力资源</h3><div class="deploy-form-row"><label for="trainingCluster"><span class="required">*</span> 选择集群</label><select class="control mono" id="trainingCluster" onchange="renderTrainingResource('training')"><option value="192.192.140.6">192.192.140.6 · 生产推理集群</option><option value="192.192.140.18">192.192.140.18 · 在线服务集群</option><option value="192.192.140.32">192.192.140.32 · 测试集群</option></select></div><div class="deploy-gpu-panel"><div class="deploy-subtitle">显卡信息</div><div class="deploy-table-wrap"><table class="deploy-resource-table"><thead><tr><th>序号</th><th>节点名</th><th>节点 IP</th><th>显卡名</th><th>可用</th><th>总数</th></tr></thead><tbody id="trainingGpuTableBody"></tbody></table></div></div><div class="deploy-form-row"><label for="hardware"><span class="required">*</span> 显卡型号</label><select class="control" id="hardware"><option>NVIDIA L40S (48GB)</option><option>NVIDIA A100 (80GB)</option><option>NVIDIA H800 (80GB)</option><option>NVIDIA T4 (16GB)</option></select></div><div class="deploy-form-row"><label for="hardwareCount"><span class="required">*</span> 显卡数量</label><input class="control" id="hardwareCount" type="number" min="1" max="8" value="2"></div></section>
       <section class="form-section"><h3 class="form-section-title">训练参数</h3><div class="form-grid">
@@ -64,7 +72,7 @@ runtime:
 evaluation:
   metric: f1
   validation_split: 0.15</textarea></div></section>
-    </div><footer class="modal-footer"><span class="muted" style="font-size:11px">带 * 的字段为必填项</span><div class="modal-actions"><button class="btn" type="button" onclick="closeModal('createTaskModal')">取消</button><button class="btn btn-primary" type="button" onclick="createTask()">创建任务</button></div></footer></section></div>
+    </div><footer class="modal-footer"><span class="muted" style="font-size:11px">带 * 的字段为必填项</span><div class="modal-actions"><button class="btn" type="button" onclick="closeModal('createTaskModal')">取消</button><button class="btn btn-primary" id="createTrainingTaskButton" type="button" onclick="createTask()">创建任务</button></div></footer></section></div>
 
   <div class="toast hidden" id="toast" role="status" aria-live="polite"><svg class="icon"><use href="#i-check"/></svg><div><h3 id="toastTitle">操作成功</h3><p id="toastMessage"></p></div></div>
   <script>
@@ -77,9 +85,83 @@ evaluation:
     function applyFilters() { const search = document.getElementById('taskSearch'); const keyword = search.value.trim().toLowerCase(); let count = 0; taskRows.forEach(row => { const taskName = row.querySelector('h3').textContent.toLowerCase(); const show = taskName.includes(keyword); row.classList.toggle('hidden', !show); if (show) count += 1; }); document.getElementById('taskCount').textContent = count; document.getElementById('paginationCount').textContent = count; document.getElementById('emptyRow').classList.toggle('hidden', count !== 0); document.getElementById('searchClear').classList.toggle('hidden', !keyword); }
     function updateLearningRate(value) { document.getElementById('learningRateValue').textContent = Number(value).toExponential(1); }
     function toggleAdvanced() { const panel = document.getElementById('advancedPanel'); const toggle = document.querySelector('.advanced-toggle'); const expanded = panel.classList.toggle('hidden') === false; toggle.setAttribute('aria-expanded', String(expanded)); document.getElementById('advancedIcon').style.transform = expanded ? 'rotate(90deg)' : ''; }
+    function escapeHtml(value) { return String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char])); }
+    function formatFileSize(bytes) { if (bytes < 1024) return `${bytes} B`; if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`; return `${(bytes / 1024 / 1024).toFixed(1)} MB`; }
+    function parseCsvLine(line) { const values = []; let value = '', quoted = false; for (let index = 0; index < line.length; index += 1) { const char = line[index]; if (char === '"') { if (quoted && line[index + 1] === '"') { value += '"'; index += 1; } else quoted = !quoted; } else if (char === ',' && !quoted) { values.push(value.trim()); value = ''; } else value += char; } values.push(value.trim()); return values; }
+    function showDatasetQualityState(state) { ['datasetQualityChecking','datasetQualityResult','datasetQualityError'].forEach(id => document.getElementById(id).classList.toggle('hidden', id !== state)); }
+    function datasetQualityBadge(text, tone) { const status = document.getElementById('datasetQualityStatus'); status.className = `badge badge-${tone} dataset-quality-status`; status.textContent = text; }
+    async function inspectDatasetFile(file) {
+      const extension = file.name.split('.').pop().toLowerCase();
+      if (!['json','jsonl','csv'].includes(extension)) throw new Error('格式不支持：请上传 JSON、JSONL 或 CSV 格式的训练集。');
+      if (file.size > 20 * 1024 * 1024) throw new Error('文件超过 20 MB，请拆分后重新上传。');
+      const content = await file.text();
+      if (!content.trim()) throw new Error('文件内容为空，无法进行质量检测。');
+      let records = [], invalidRows = 0;
+      if (extension === 'json') {
+        const parsed = JSON.parse(content);
+        const source = Array.isArray(parsed) ? parsed : Array.isArray(parsed.data) ? parsed.data : Array.isArray(parsed.records) ? parsed.records : null;
+        if (!source) throw new Error('JSON 顶层应为数组，或包含 data / records 数组。');
+        records = source.filter(item => { const valid = item && typeof item === 'object' && !Array.isArray(item); if (!valid) invalidRows += 1; return valid; });
+      } else if (extension === 'jsonl') {
+        content.split(/\r?\n/).filter(line => line.trim()).forEach(line => { try { const item = JSON.parse(line); if (item && typeof item === 'object' && !Array.isArray(item)) records.push(item); else invalidRows += 1; } catch (error) { invalidRows += 1; } });
+      } else {
+        const lines = content.split(/\r?\n/).filter(line => line.trim());
+        if (lines.length < 2) throw new Error('CSV 文件至少需要表头和 1 条数据。');
+        const headers = parseCsvLine(lines.shift()).map(header => header.trim());
+        if (!headers.length || headers.some(header => !header)) throw new Error('CSV 表头存在空字段，请补充字段名。');
+        lines.forEach(line => { const values = parseCsvLine(line); if (values.length !== headers.length) { invalidRows += 1; return; } records.push(Object.fromEntries(headers.map((header, index) => [header, values[index]]))); });
+      }
+      if (!records.length) throw new Error('未检测到可用数据记录，请检查文件内容。');
+      const fields = [...new Set(records.slice(0, 1000).flatMap(record => Object.keys(record)))];
+      let missingCells = 0;
+      records.forEach(record => fields.forEach(field => { const value = record[field]; if (value === undefined || value === null || String(value).trim() === '') missingCells += 1; }));
+      const signatures = new Set(); let duplicates = 0;
+      records.forEach(record => { const signature = JSON.stringify(Object.keys(record).sort().reduce((result, key) => { result[key] = record[key]; return result; }, {})); if (signatures.has(signature)) duplicates += 1; else signatures.add(signature); });
+      const preferredLabels = ['label','labels','category','class','intent','tag','target'];
+      const labelField = preferredLabels.map(name => fields.find(field => field.toLowerCase() === name)).find(Boolean) || fields.find(field => /label|category|class|intent|tag|标签|类别/.test(field.toLowerCase())) || '';
+      const labelCounts = new Map();
+      if (labelField) records.forEach(record => { const label = String(record[labelField] ?? '').trim(); if (label) labelCounts.set(label, (labelCounts.get(label) || 0) + 1); });
+      const totalRows = records.length + invalidRows;
+      const missingRate = fields.length ? missingCells / (records.length * fields.length) * 100 : 0;
+      const duplicateRate = duplicates / records.length * 100;
+      const invalidRate = invalidRows / totalRows * 100;
+      const score = Math.max(0, Math.round(100 - missingRate * .35 - duplicateRate * .3 - invalidRate * .5 - (labelField ? 0 : 10)));
+      const labels = [...labelCounts.entries()].sort((left, right) => right[1] - left[1]);
+      return { extension: extension.toUpperCase(), records: records.length, invalidRows, fields, labelField, labels, missingRate, duplicateRate, invalidRate, score };
+    }
+    function renderDatasetQuality(file, result) {
+      const tone = result.score >= 90 ? 'success' : result.score >= 75 ? 'warning' : 'danger';
+      datasetQualityBadge(result.score >= 90 ? '检测通过' : result.score >= 75 ? '建议复核' : '质量异常', tone);
+      const labelTotal = result.labels.reduce((sum, [, count]) => sum + count, 0);
+      const topLabels = result.labels.slice(0, 8);
+      const labelRows = topLabels.length ? topLabels.map(([label, count]) => { const percent = labelTotal ? count / labelTotal * 100 : 0; return `<div class="label-distribution-row"><span class="label-distribution-name" title="${escapeHtml(label)}">${escapeHtml(label)}</span><span class="label-distribution-track" aria-hidden="true"><span style="width:${percent.toFixed(1)}%"></span></span><span class="label-distribution-value">${count} · ${percent.toFixed(1)}%</span></div>`; }).join('') : '<p class="dataset-quality-note warning">未识别到标签字段，请确认字段名是否为 label、category、class 或 intent。</p>';
+      document.getElementById('datasetQualityResult').innerHTML = `<div class="dataset-quality-summary"><div class="dataset-quality-metric"><span>综合质量分</span><strong class="${tone === 'success' ? 'success' : ''}">${result.score} / 100</strong></div><div class="dataset-quality-metric"><span>格式</span><strong>${result.extension}</strong></div><div class="dataset-quality-metric"><span>有效记录</span><strong>${result.records.toLocaleString('zh-CN')}</strong></div><div class="dataset-quality-metric"><span>字段数</span><strong>${result.fields.length}</strong></div><div class="dataset-quality-metric"><span>文件大小</span><strong>${formatFileSize(file.size)}</strong></div></div><div class="dataset-quality-detail"><section class="dataset-quality-block"><h4>格式与质量检查</h4><ul class="dataset-check-list"><li><span>文件解析</span><span>格式正确</span></li><li class="${result.invalidRate ? 'warning' : ''}"><span>无效记录</span><span>${result.invalidRows} 条 · ${result.invalidRate.toFixed(2)}%</span></li><li class="${result.missingRate > 2 ? 'warning' : ''}"><span>字段缺失率</span><span>${result.missingRate.toFixed(2)}%</span></li><li class="${result.duplicateRate > 2 ? 'warning' : ''}"><span>重复记录率</span><span>${result.duplicateRate.toFixed(2)}%</span></li><li class="${result.labelField ? '' : 'warning'}"><span>标签字段</span><span>${result.labelField ? escapeHtml(result.labelField) : '未识别'}</span></li></ul></section><section class="dataset-quality-block"><h4>标签分布${result.labelField ? ` · ${escapeHtml(result.labelField)}` : ''}</h4><div class="label-distribution">${labelRows}</div></section></div><p class="dataset-quality-note">检测范围：格式可解析性、字段完整性、重复数据、无效记录和标签分布。${result.labels.length > 8 ? ` 共 ${result.labels.length} 类标签，当前展示前 8 类。` : ''}</p>`;
+      showDatasetQualityState('datasetQualityResult');
+    }
+    async function handleTrainingDatasetUpload(event) {
+      const file = event.target.files[0]; if (!file) return;
+      document.getElementById('datasetQualityPanel').classList.remove('hidden');
+      document.getElementById('datasetQualityFile').textContent = `${file.name} · ${formatFileSize(file.size)}`;
+      document.getElementById('trainUploadButton').disabled = true;
+      document.getElementById('createTrainingTaskButton').disabled = true;
+      datasetQualityBadge('检测中', 'info'); showDatasetQualityState('datasetQualityChecking');
+      try {
+        const [result] = await Promise.all([inspectDatasetFile(file), new Promise(resolve => setTimeout(resolve, 650))]);
+        renderDatasetQuality(file, result);
+        const select = document.getElementById('dataset');
+        [...select.options].filter(option => option.dataset.uploaded === 'true').forEach(option => option.remove());
+        const option = new Option(`${file.name}（已检测）`, `uploaded:${file.name}`, true, true); option.dataset.uploaded = 'true'; select.add(option);
+      } catch (error) {
+        datasetQualityBadge('检测失败', 'danger'); document.getElementById('datasetQualityError').textContent = error instanceof SyntaxError ? '文件语法错误：请检查 JSON / JSONL 结构后重新上传。' : error.message; showDatasetQualityState('datasetQualityError');
+      } finally {
+        document.getElementById('trainUploadButton').disabled = false;
+        document.getElementById('createTrainingTaskButton').disabled = false;
+        event.target.value = '';
+      }
+    }
     function createTask() { closeModal('createTaskModal'); showToast('训练任务已创建','新闻分类模型训练已进入资源排队。'); }
     function showToast(title, message) { const toast = document.getElementById('toast'); document.getElementById('toastTitle').textContent = title; document.getElementById('toastMessage').textContent = message; toast.classList.remove('hidden'); clearTimeout(showToast.timer); showToast.timer = setTimeout(() => toast.classList.add('hidden'), 3200); }
-    document.getElementById('searchClear').addEventListener('click', () => { document.getElementById('taskSearch').value = ''; applyFilters(); document.getElementById('taskSearch').focus(); }); document.getElementById('taskSearch').addEventListener('input', applyFilters);
+    document.getElementById('searchClear').addEventListener('click', () => { document.getElementById('taskSearch').value = ''; applyFilters(); document.getElementById('taskSearch').focus(); }); document.getElementById('taskSearch').addEventListener('input', applyFilters); document.getElementById('trainUploadInput').addEventListener('change', handleTrainingDatasetUpload);
     renderTrainingResource('training'); document.querySelectorAll('.modal-backdrop').forEach(modal => modal.addEventListener('click', event => { if (event.target === modal) closeModal(modal.id); })); document.addEventListener('keydown', event => { if (event.key === 'Escape') { const open = document.querySelector('.modal-backdrop:not(.hidden)'); if (open) closeModal(open.id); } });
   </script>
 </body>

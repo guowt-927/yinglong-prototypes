@@ -1,0 +1,102 @@
+:root {
+  --yl-theme-transition: background-color .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease;
+}
+
+html { transition: background-color .2s ease; }
+body, .sidebar, .global-header, .card, .panel, .modal, .dialog, input, select, textarea, button, table, th, td { transition: var(--yl-theme-transition); }
+
+.yl-header-tools { display: flex; align-items: center; gap: 12px; margin-left: auto; }
+.yl-theme-switcher { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 2px; padding: 2px; border: 1px solid var(--border, #e2e8f0); border-radius: 8px; background: var(--border-soft, #f1f5f9); }
+.yl-theme-switcher button { display: inline-flex; min-height: 28px; align-items: center; gap: 5px; padding: 4px 8px; border: 0; border-radius: 6px; color: var(--muted, #64748b); background: transparent; font-size: 11px; font-weight: 600; line-height: 18px; white-space: nowrap; cursor: pointer; }
+.yl-theme-switcher button:hover { color: var(--ink, #0f172a); }
+.yl-theme-switcher button.active { color: var(--brand, #266eff); background: var(--surface, #fff); box-shadow: 0 1px 2px rgba(15, 23, 42, .08); }
+.yl-theme-switcher svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.yl-theme-switcher-floating { position: fixed; z-index: 90; top: 14px; right: 16px; box-shadow: 0 8px 24px rgba(15, 23, 42, .14); }
+
+html.dark {
+  color-scheme: dark;
+  --brand: #3b82f6;
+  --brand-hover: #60a5fa;
+  --brand-soft: #172554;
+  --canvas: #020617;
+  --surface: #0f172a;
+  --ink: #f1f5f9;
+  --text: #cbd5e1;
+  --muted: #94a3b8;
+  --subtle: #64748b;
+  --border: #334155;
+  --border-soft: #1e293b;
+  --success: #34d399;
+  --success-soft: #052e2b;
+  --info: #38bdf8;
+  --info-soft: #082f49;
+  --warning: #fbbf24;
+  --warning-soft: #422006;
+  --danger: #fb7185;
+  --danger-soft: #4c0519;
+  --indigo: #818cf8;
+  --indigo-soft: #1e1b4b;
+  --shadow-xs: 0 0 0 1px rgba(51, 65, 85, .55);
+  --shadow-lg: 0 20px 50px rgba(2, 6, 23, .35);
+  --yl-primary: #3b82f6;
+  --yl-primary-hover: #60a5fa;
+  --yl-primary-active: #2563eb;
+  --yl-text-heading: #f1f5f9;
+  --yl-text-primary: #cbd5e1;
+  --yl-text-secondary: #94a3b8;
+  --yl-text-tertiary: #64748b;
+  --yl-border: #334155;
+  --yl-divider: #1e293b;
+  --yl-page-bg: #020617;
+  --yl-surface: #0f172a;
+  --yl-table-head: #111c2f;
+  --yl-danger: #fb7185;
+  --yl-warning: #fbbf24;
+  --yl-success: #34d399;
+}
+
+html.dark, html.dark body { color: var(--text); background-color: var(--canvas); }
+html.dark .sidebar, html.dark .global-header, html.dark .yl-sidebar, html.dark .yl-global-topbar { border-color: var(--border) !important; background: rgba(15, 23, 42, .96) !important; box-shadow: none !important; }
+html.dark .brand, html.dark .sidebar-foot, html.dark .yl-sidebar-brand, html.dark .yl-sidebar-footer { border-color: var(--border) !important; background: var(--surface) !important; }
+html.dark .brand-name, html.dark .breadcrumb-current, html.dark .user-profile, html.dark .yl-global-user, html.dark .yl-breadcrumb-current { color: var(--ink) !important; }
+html.dark .nav-item, html.dark .yl-sidebar-item { color: var(--text) !important; }
+html.dark .nav-item:hover, html.dark .yl-sidebar-item:hover { color: var(--ink) !important; background: var(--border-soft) !important; }
+html.dark .nav-item.active, html.dark .yl-sidebar-item.active { color: #60a5fa !important; background: #172554 !important; }
+html.dark .page-canvas, html.dark .heading-spec-canvas, html.dark .app-main, html.dark .yl-content-shell, html.dark .yl-page-workspace { background: var(--canvas) !important; }
+html.dark .card, html.dark .panel, html.dark .governance-card, html.dark .section-card, html.dark .table-card, html.dark .modal, html.dark .dialog, html.dark .detail-drawer, html.dark .call-drawer, html.dark .resource-workbench { border-color: var(--border) !important; color: var(--text); background: var(--surface) !important; box-shadow: none !important; }
+html.dark h1, html.dark h2, html.dark h3, html.dark h4, html.dark .page-title, html.dark .section-title, html.dark .modal-title { color: var(--ink) !important; }
+html.dark p, html.dark dt, html.dark label, html.dark .muted, html.dark .page-description, html.dark .field-help { border-color: var(--border); }
+html.dark input, html.dark select, html.dark textarea, html.dark .control, html.dark .form-control { border-color: var(--border) !important; color: var(--text) !important; background-color: #111c2f !important; }
+html.dark input::placeholder, html.dark textarea::placeholder { color: var(--subtle) !important; }
+html.dark input:disabled, html.dark select:disabled, html.dark textarea:disabled { color: var(--muted) !important; background: #0b1220 !important; }
+html.dark .btn:not(.btn-primary):not(.btn-danger), html.dark button.bg-white { border-color: var(--border) !important; color: var(--text) !important; background: #111c2f !important; }
+html.dark .btn:not(.btn-primary):not(.btn-danger):hover { color: var(--ink) !important; background: var(--border-soft) !important; }
+html.dark table, html.dark thead, html.dark tbody, html.dark tr, html.dark th, html.dark td { border-color: var(--border) !important; }
+html.dark th, html.dark thead, html.dark .table-toolbar, html.dark .pagination, html.dark .modal-footer, html.dark .dialog-footer { color: var(--muted) !important; background: #111c2f !important; }
+html.dark td { color: var(--text) !important; background-color: transparent; }
+html.dark tbody tr:hover, html.dark .row-muted { background: rgba(30, 41, 59, .72) !important; }
+html.dark .modal-header, html.dark .modal-footer, html.dark .dialog-header, html.dark .dialog-footer { border-color: var(--border) !important; }
+html.dark .modal-backdrop, html.dark .dialog-backdrop { background: rgba(2, 6, 23, .72) !important; }
+html.dark .toast { border-color: var(--border) !important; color: var(--text) !important; background: var(--surface) !important; }
+
+/* Compatibility layer for older Tailwind-based prototypes. */
+html.dark .bg-white, html.dark [class~="bg-white"] { background-color: var(--surface) !important; }
+html.dark .bg-gray-50, html.dark .bg-slate-50, html.dark [class*="bg-gray-50"], html.dark [class*="bg-slate-50"] { background-color: #111c2f !important; }
+html.dark .bg-gray-100, html.dark .bg-slate-100, html.dark [class*="bg-gray-100"], html.dark [class*="bg-slate-100"] { background-color: var(--border-soft) !important; }
+html.dark .text-gray-900, html.dark .text-gray-800, html.dark .text-slate-900, html.dark .text-slate-800 { color: var(--ink) !important; }
+html.dark .text-gray-700, html.dark .text-gray-600, html.dark .text-slate-700, html.dark .text-slate-600 { color: var(--text) !important; }
+html.dark .text-gray-500, html.dark .text-gray-400, html.dark .text-slate-500, html.dark .text-slate-400 { color: var(--muted) !important; }
+html.dark .border-gray-100, html.dark .border-gray-200, html.dark .border-gray-300, html.dark .border-slate-100, html.dark .border-slate-200, html.dark .border-slate-300 { border-color: var(--border) !important; }
+html.dark .shadow-sm, html.dark .shadow, html.dark .shadow-lg, html.dark .shadow-xl, html.dark .shadow-2xl { box-shadow: none !important; }
+html.dark .hover\:bg-gray-50:hover, html.dark .hover\:bg-slate-50:hover, html.dark .hover\:bg-slate-100:hover { background-color: var(--border-soft) !important; }
+html.dark canvas { filter: brightness(.92) saturate(.88); }
+
+@media (max-width: 640px) {
+  .yl-theme-switcher button span { display: none; }
+  .yl-theme-switcher button { width: 30px; justify-content: center; padding-inline: 6px; }
+  .yl-header-tools { gap: 7px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html, body, .sidebar, .global-header, .card, .panel, .modal, .dialog, input, select, textarea, button, table, th, td { transition: none !important; }
+}
