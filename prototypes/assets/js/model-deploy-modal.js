@@ -30,8 +30,8 @@
   function render() {
     const wrapper = document.createElement('div');
     wrapper.innerHTML = `
-      <div class="modal-backdrop hidden" id="deployModal" role="dialog" aria-modal="true" aria-labelledby="deployModalTitle">
-        <section class="modal deploy-modal">
+      <div class="modal-backdrop hidden" id="deployModal">
+        <section class="modal deploy-modal" role="dialog" aria-modal="true" aria-labelledby="deployModalTitle">
           <header class="modal-header deploy-modal-header">
             <div><h2 id="deployModalTitle">部署模型服务</h2></div>
             <button class="btn btn-icon btn-ghost" id="closeDeployModal" type="button" aria-label="关闭部署服务弹窗">${closeIcon}</button>
@@ -55,12 +55,13 @@
                   </div>
                 </div>
                 <div class="deploy-form-row">
-                  <span class="deploy-field-label"><span class="required">*</span> 镜像</span>
+                  <span class="deploy-field-label"><span class="required">*</span> 镜像 <span class="yl-v4-scope-badge">V1不含</span></span>
                   <div class="deploy-image-stack">
-                    <div class="deploy-image-mode" role="group" aria-label="镜像选择方式">
+                    <div class="deploy-image-mode" role="group" aria-label="镜像选择方式，V1 暂不包含">
                       <label><input type="radio" name="deployImageMode" value="path"><span>填写镜像路径</span></label>
                       <label><input type="radio" name="deployImageMode" value="repository"><span>从镜像仓库选择</span></label>
                     </div>
+                    <p class="deploy-v1-scope-note" role="note">V1.0 使用平台默认镜像；镜像路径与镜像仓库选择仅作后续版本方案预览。</p>
                     <div id="deployImagePathPanel">
                       <input class="control mono" id="deployImagePath" type="text" placeholder="例如：registry.yinglong.ai/inference/vllm:0.6.2" aria-label="镜像路径" aria-describedby="deployImageHelp deployImagePathError">
                       <p class="deploy-field-error hidden" id="deployImagePathError" role="alert">请输入完整的镜像路径。</p>

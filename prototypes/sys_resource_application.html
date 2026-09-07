@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>模型纳管 - 应龙大模型推理平台</title>
+    <title>资源申请 - 应龙大模型推理平台</title>
     <link rel="stylesheet" href="assets/css/yinglong-v2.css">
     <link rel="stylesheet" href="assets/css/pages/resource-application.css">
     <link rel="stylesheet" href="assets/css/theme.css">
@@ -873,8 +873,8 @@
 
         }
     </style>
-  <link rel="stylesheet" href="assets/css/prototype-v4.css">
-  <script defer src="assets/js/prototype-v4.js"></script>
+  <link rel="stylesheet" href="assets/css/prototype-v4.css?v=20260906-sidebar-version">
+  <script defer src="assets/js/prototype-v4.js?v=20260906-sidebar-version"></script>
 </head>
 <body class="sidebar-led heading-spec-page">
 <svg width="0" height="0" aria-hidden="true" style="position:absolute">
@@ -893,9 +893,9 @@
     <section class="nav-group"><h2 class="nav-group-title">资源与运维</h2><a class="nav-item active" href="sys_resource_application.html" aria-current="page"><svg class="icon"><use href="#i-file"/></svg><span>资源申请</span></a><a class="nav-item" href="sys_resource_approval.html"><svg class="icon"><use href="#i-check-user"/></svg><span>授权审批</span></a><a class="nav-item" href="sys_infrastructure_mgmt.html"><svg class="icon"><use href="#i-network"/></svg><span>集群管理</span></a></section>
 </nav><div class="sidebar-foot"><div class="sidebar-version" tabindex="0" aria-describedby="sidebarVersionDetails"><span>系统版本</span><strong>v1.0.0</strong><span class="sidebar-version-popover" id="sidebarVersionDetails" role="tooltip"><strong>版本信息</strong><span><span>前端版本</span><b>v1.0.0</b></span><span><span>后端版本</span><b>v1.0.0</b></span></span></div></div></aside>
 <div class="app-main">
-    <header class="global-header"><nav class="breadcrumb" aria-label="面包屑"><a href="../index.html">应龙</a><span>/</span><span>模型管理</span><span>/</span><span class="breadcrumb-current" aria-current="page">模型纳管</span></nav><div class="user-profile"><span>资源管理员</span><span class="user-avatar" aria-hidden="true">A</span></div></header>
+    <header class="global-header"><nav class="breadcrumb" aria-label="面包屑"><a href="../index.html">应龙</a><span>/</span><span>资源与运维</span><span>/</span><span class="breadcrumb-current" aria-current="page">资源申请</span></nav><div class="user-profile"><span>资源管理员</span><span class="user-avatar" aria-hidden="true">A</span></div></header>
         <main class="page-canvas heading-spec-canvas" id="main-content">
-            <section class="section governance-overview" aria-labelledby="governanceTitle"><div class="section-heading overview-heading"><div><h1 class="page-title" id="governanceTitle">模型纳管</h1><p class="page-description">主线模型目录前置，先确认可复用能力，再进入非主线模型纳管流程。</p></div></div></section>
+            <section class="section governance-overview" aria-labelledby="governanceTitle"><div class="section-heading overview-heading"><div><h1 class="page-title" id="governanceTitle">资源申请</h1><p class="page-description">查看平台接入规范，并申请线下验证服务器、平台权限和部署资源。</p></div></div></section>
             <div class="governance-page">
                 <section class="governance-grid two">
                     <div class="governance-card">
@@ -961,9 +961,9 @@
                             <div class="guidance-downloads">
                                 <h3>平台纳管规范与指引</h3>
                                 <div class="download-list">
-                                    <a class="download-link" href="平台模型纳管规范.pdf" download>
+                                    <a class="download-link" href="../doc/应龙的模型边界说明及平台接入规范.pdf" download>
                                         <svg class="download-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>
-                                        <span class="download-copy"><strong>平台模型纳管规范</strong><span>PDF · V3</span></span>
+                                        <span class="download-copy"><strong>应龙的模型边界说明及平台接入规范</strong><span>PDF</span></span>
                                         <span class="download-action">下载</span>
                                     </a>
                                     <div class="download-link is-disabled" aria-disabled="true" title="操作指引暂未开放">
@@ -1038,7 +1038,7 @@
                         <div class="page-actions"><button class="btn trial-button" onclick="openApplicationModal('线下验证服务器')">申请线下验证服务器</button><button class="btn btn-primary" onclick="openApplicationModal('平台账号和资源')">申请平台权限和资源</button></div>
                     </div>
                     <section class="card table-card application-table">
-                        <div class="filter-toolbar"><div class="search-wrap"><input class="search-input" id="keyword" maxlength="50" placeholder="搜索申请名称、编号、业务系统或申请人" oninput="renderTable()"><button class="search-clear hidden" id="keywordClear" onclick="clearKeyword()" aria-label="清除申请搜索">×</button></div><select class="control" id="typeFilter" onchange="renderTable()"><option value="">全部类型</option><option>线下验证服务器</option><option>平台账号和资源</option></select><select class="control" id="statusFilter" onchange="renderTable()"><option value="">全部状态</option><option>草稿</option><option>审核中</option><option>审核通过</option></select><span class="filter-result-snapshot">筛选结果 <strong id="resultCount">0</strong> 项</span><button class="btn btn-ghost" onclick="resetFilters()">重置</button></div>
+                        <div class="filter-toolbar"><div class="search-wrap"><input class="search-input" id="keyword" maxlength="50" aria-label="搜索资源申请" placeholder="搜索申请名称、编号、业务系统或申请人" oninput="renderTable()"><button class="search-clear hidden" id="keywordClear" onclick="clearKeyword()" aria-label="清除申请搜索">×</button></div><label class="yl-v4-filter-field" for="typeFilter"><span class="yl-v4-filter-label">类型</span><select class="control" id="typeFilter" onchange="renderTable()"><option value="">全部类型</option><option>线下验证服务器</option><option>平台账号和资源</option></select></label><label class="yl-v4-filter-field" for="statusFilter"><span class="yl-v4-filter-label">状态</span><select class="control" id="statusFilter" onchange="renderTable()"><option value="">全部状态</option><option>草稿</option><option>审核中</option><option>审核通过</option></select></label><span class="filter-result-snapshot">筛选结果 <strong id="resultCount">0</strong> 项</span><button class="btn btn-ghost" onclick="resetFilters()">重置</button></div>
                         <div class="table-toolbar"><div class="table-title"><h2>我的部署资源申请</h2></div><div class="table-toolbar-actions"><div class="prototype-view-switch" aria-label="切换申请列表示例状态"><button id="emptyViewBtn" type="button" aria-pressed="false" onclick="switchApplicationView('empty')">空状态</button><button id="listViewBtn" class="active" type="button" aria-pressed="true" onclick="switchApplicationView('list')">列表状态</button></div></div></div>
                         <div class="table-scroll" id="tableArea"></div>
                         <footer class="pagination"><span id="paginationText">共 0 项</span><div><button class="btn table-button" disabled>上一页</button><button class="btn table-button btn-primary">1</button><button class="btn table-button" disabled>下一页</button></div></footer>

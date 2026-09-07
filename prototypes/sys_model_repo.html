@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="assets/css/pages/model-management.css">
   <link rel="stylesheet" href="assets/css/theme.css">
   <script src="assets/js/theme.js"></script>
-  <link rel="stylesheet" href="assets/css/prototype-v4.css">
-  <script defer src="assets/js/prototype-v4.js"></script>
+  <link rel="stylesheet" href="assets/css/prototype-v4.css?v=20260906-sidebar-version">
+  <script defer src="assets/js/prototype-v4.js?v=20260906-no-page-notice"></script>
 </head>
 <body class="sidebar-led heading-spec-page">
   <svg width="0" height="0" aria-hidden="true" style="position:absolute">
@@ -41,7 +41,7 @@
     <a class="brand" href="../index.html" aria-label="应龙 AI算力基座首页"><span class="brand-mark" aria-hidden="true"><img src="../doc/logo/icon_01.svg" alt=""></span><span class="brand-copy"><span class="brand-name">应龙</span><span class="brand-subtitle">AI算力基座</span></span></a>
     <nav class="sidebar-nav">
       <section class="nav-group"><h2 class="nav-group-title">工作台</h2><a class="nav-item" href="../index.html"><svg class="icon"><use href="#i-dashboard"/></svg><span>系统概览</span></a></section>
-      <section class="nav-group"><h2 class="nav-group-title">算力调度</h2><a class="nav-item" href="sys_dispatch.html"><svg class="icon"><use href="#i-sliders"/></svg><span>算力调度</span></a><a class="nav-item" href="sys_task_list.html"><svg class="icon"><use href="#i-list"/></svg><span>我的任务</span></a></section>
+      <section class="nav-group"><h2 class="nav-group-title">算力调度</h2><a class="nav-item" href="sys_dispatch.html"><svg class="icon"><use href="#i-sliders"/></svg><span>算力调度</span></a><a class="nav-item" href="sys_task_list.html"><svg class="icon"><use href="#i-list"/></svg><span>密钥管理</span></a></section>
       <section class="nav-group"><h2 class="nav-group-title">模型管理</h2><a class="nav-item active" href="sys_model_repo.html" aria-current="page"><svg class="icon"><use href="#i-box"/></svg><span>模型资产</span></a><a class="nav-item" href="sys_model_service.html"><svg class="icon"><use href="#i-server"/></svg><span>模型服务</span></a><a class="nav-item" href="sys_model_training.html"><svg class="icon"><use href="#i-brain"/></svg><span>模型训练</span></a><a class="nav-item" href="sys_model_monitor.html"><svg class="icon"><use href="#i-activity"/></svg><span>模型监测</span></a></section>
       <section class="nav-group"><h2 class="nav-group-title">资源与运维</h2><a class="nav-item" href="sys_resource_application.html"><svg class="icon"><use href="#i-file"/></svg><span>资源申请</span></a><a class="nav-item" href="sys_resource_approval.html"><svg class="icon"><use href="#i-check-user"/></svg><span>授权审批</span></a><a class="nav-item" href="sys_infrastructure_mgmt.html"><svg class="icon"><use href="#i-network"/></svg><span>集群管理</span></a></section>
     </nav>
@@ -66,21 +66,21 @@
           <article class="card model-card model-asset-card" data-model-id="qwen-72b" data-name="Qwen-72B" data-description="面向通用文本生成与知识问答的基础模型，可直接复用生产环境部署模板。" data-model-path="/data/yl/modelPath/yl-model_qwen-72b_v2.1.0" data-startup-path="/data/yl/modelPath/yl-model_qwen-72b_v2.1.0/qwen-72b_v2.1.0.yaml" data-icon-src="icon/model-icon/qianwen.jpg" data-icon-mode="auto">
             <div class="model-card-head"><div class="model-identity"><span class="model-mark has-logo" aria-hidden="true"><img src="icon/model-icon/qianwen.jpg" alt=""></span><div><h2 class="model-name">Qwen-72B</h2></div></div><div class="asset-version-count" aria-label="4 个版本"><strong>4</strong><span>个版本</span></div></div>
             <p class="model-summary">面向通用文本生成与知识问答的基础模型，可直接复用生产环境部署模板。</p>
-            <div class="card-actions"><button class="btn model-action" type="button" data-action="edit"><svg class="icon icon-sm"><use href="#i-edit"/></svg>编辑</button><button class="btn model-action" type="button" data-action="yaml"><svg class="icon icon-sm"><use href="#i-code"/></svg>部署 YAML</button><a class="btn model-action" href="sys_model_version_detail.html?model=qwen-72b"><svg class="icon icon-sm"><use href="#i-clock"/></svg>训练版本</a><button class="btn btn-primary model-action" type="button" data-deploy-open data-deploy-mode="deploy" data-deploy-model="Qwen-72B" data-deploy-version="v2.1.0" data-deploy-service="svc-qwen-72b-prod"><svg class="icon icon-sm"><use href="#i-rocket"/></svg>部署服务</button></div>
+            <div class="card-actions"><button class="btn model-action" type="button" data-action="edit"><svg class="icon icon-sm"><use href="#i-edit"/></svg>编辑</button><button class="btn model-action" type="button" data-action="yaml"><svg class="icon icon-sm"><use href="#i-code"/></svg>部署 YAML</button><button class="btn model-action" type="button" data-action="route"><svg class="icon icon-sm"><use href="#i-route"/></svg>路由配置</button><a class="btn model-action" href="sys_model_version_detail.html?model=qwen-72b"><svg class="icon icon-sm"><use href="#i-clock"/></svg>训练版本</a><button class="btn btn-primary model-action" type="button" data-deploy-open data-deploy-mode="deploy" data-deploy-model="Qwen-72B" data-deploy-version="v2.1.0" data-deploy-service="svc-qwen-72b-prod"><svg class="icon icon-sm"><use href="#i-rocket"/></svg>部署服务</button></div>
           </article>
 
           <article class="card model-card model-asset-card" data-model-id="deepseek-r1" data-name="DeepSeek-R1" data-description="面向代码生成与复杂推理场景的推理模型，可用于业务共性推理和代码辅助场景。" data-model-path="/data/yl/modelPath/yl-model_deepseek-r1_v1.0.0" data-startup-path="/data/yl/modelPath/yl-model_deepseek-r1_v1.0.0/deepseek-r1_v1.0.0.yaml" data-icon-src="icon/model-icon/deepseek.jpg" data-icon-mode="auto">
             <div class="model-card-head"><div class="model-identity"><span class="model-mark has-logo" aria-hidden="true"><img src="icon/model-icon/deepseek.jpg" alt=""></span><div><h2 class="model-name">DeepSeek-R1</h2></div></div><div class="asset-version-count" aria-label="3 个版本"><strong>3</strong><span>个版本</span></div></div>
             <p class="model-summary">面向代码生成与复杂推理场景的推理模型，可用于业务共性推理和代码辅助场景。</p>
-            <div class="card-actions"><button class="btn model-action" type="button" data-action="edit"><svg class="icon icon-sm"><use href="#i-edit"/></svg>编辑</button><button class="btn model-action" type="button" data-action="yaml"><svg class="icon icon-sm"><use href="#i-code"/></svg>部署 YAML</button><a class="btn model-action" href="sys_model_version_detail.html?model=deepseek-r1"><svg class="icon icon-sm"><use href="#i-clock"/></svg>训练版本</a><button class="btn btn-primary model-action" type="button" data-deploy-open data-deploy-mode="deploy" data-deploy-model="DeepSeek-R1" data-deploy-version="v1.0.0" data-deploy-service="svc-deepseek-r1-prod"><svg class="icon icon-sm"><use href="#i-rocket"/></svg>部署服务</button></div>
+            <div class="card-actions"><button class="btn model-action" type="button" data-action="edit"><svg class="icon icon-sm"><use href="#i-edit"/></svg>编辑</button><button class="btn model-action" type="button" data-action="yaml"><svg class="icon icon-sm"><use href="#i-code"/></svg>部署 YAML</button><button class="btn model-action" type="button" data-action="route"><svg class="icon icon-sm"><use href="#i-route"/></svg>路由配置</button><a class="btn model-action" href="sys_model_version_detail.html?model=deepseek-r1"><svg class="icon icon-sm"><use href="#i-clock"/></svg>训练版本</a><button class="btn btn-primary model-action" type="button" data-deploy-open data-deploy-mode="deploy" data-deploy-model="DeepSeek-R1" data-deploy-version="v1.0.0" data-deploy-service="svc-deepseek-r1-prod"><svg class="icon icon-sm"><use href="#i-rocket"/></svg>部署服务</button></div>
           </article>
         </section>
       </div>
     </main>
   </div>
 
-  <div class="modal-backdrop hidden" id="packageSpecModal" role="dialog" aria-modal="true" aria-labelledby="packageSpecTitle">
-    <section class="modal package-spec-modal">
+  <div class="modal-backdrop hidden" id="packageSpecModal">
+    <section class="modal package-spec-modal" role="dialog" aria-modal="true" aria-labelledby="packageSpecTitle">
       <header class="modal-header"><div><h2 id="packageSpecTitle">自动扫描模型包规范</h2></div><button class="btn btn-icon btn-ghost" type="button" data-close-modal="packageSpecModal" aria-label="关闭自动扫描规范弹窗"><svg class="icon"><use href="#i-x"/></svg></button></header>
       <div class="modal-body package-spec-body">
         <div class="package-spec-grid">
@@ -104,8 +104,8 @@
     </section>
   </div>
 
-  <div class="modal-backdrop hidden" id="addModelModal" role="dialog" aria-modal="true" aria-labelledby="addModelTitle">
-    <section class="modal model-ingest-modal">
+  <div class="modal-backdrop hidden" id="addModelModal">
+    <section class="modal model-ingest-modal" role="dialog" aria-modal="true" aria-labelledby="addModelTitle">
       <header class="modal-header"><div><h2 id="addModelTitle">添加模型资产</h2></div><button class="btn btn-icon btn-ghost" type="button" data-close-modal="addModelModal" aria-label="关闭添加模型资产弹窗"><svg class="icon"><use href="#i-x"/></svg></button></header>
       <form id="addModelForm" novalidate>
         <div class="modal-body model-ingest-body">
@@ -132,8 +132,8 @@
     </section>
   </div>
 
-  <div class="modal-backdrop hidden" id="editModelModal" role="dialog" aria-modal="true" aria-labelledby="editModelTitle">
-    <section class="modal model-edit-modal">
+  <div class="modal-backdrop hidden" id="editModelModal">
+    <section class="modal model-edit-modal" role="dialog" aria-modal="true" aria-labelledby="editModelTitle">
       <header class="modal-header"><div><h2 id="editModelTitle">编辑模型</h2></div><button class="btn btn-icon btn-ghost" type="button" data-close-modal="editModelModal" aria-label="关闭编辑模型弹窗"><svg class="icon"><use href="#i-x"/></svg></button></header>
       <form id="editModelForm" novalidate>
         <div class="modal-body"><div class="form-grid">
@@ -148,11 +148,31 @@
     </section>
   </div>
 
-  <div class="modal-backdrop hidden" id="yamlModal" role="dialog" aria-modal="true" aria-labelledby="yamlTitle">
-    <section class="modal model-yaml-modal">
+  <div class="modal-backdrop hidden" id="yamlModal">
+    <section class="modal model-yaml-modal" role="dialog" aria-modal="true" aria-labelledby="yamlTitle">
       <header class="modal-header"><div><h2 id="yamlTitle">部署 YAML</h2></div><button class="btn btn-icon btn-ghost" type="button" data-close-modal="yamlModal" aria-label="关闭部署 YAML 弹窗"><svg class="icon"><use href="#i-x"/></svg></button></header>
       <div class="modal-body model-yaml-body"><label class="form-label" for="yamlEditor">YAML 配置</label><textarea class="control yaml-editor model-yaml-editor" id="yamlEditor" wrap="off" spellcheck="false" aria-describedby="yamlHelp"></textarea><p class="field-help" id="yamlHelp">配置模型部署元数据、启动参数和资源限制，编辑区支持横向与纵向滚动。</p></div>
       <footer class="modal-footer"><span class="muted">修改会保存到当前模型包的部署配置。</span><div class="modal-actions"><button class="btn" type="button" data-close-modal="yamlModal">取消</button><button class="btn btn-primary" id="saveYaml" type="button"><svg class="icon icon-sm"><use href="#i-check"/></svg>保存 YAML</button></div></footer>
+    </section>
+  </div>
+
+  <div class="modal-backdrop hidden" id="routeConfigModal">
+    <section class="modal route-config-modal" role="dialog" aria-modal="true" aria-labelledby="routeConfigTitle" aria-describedby="routeConfigDescription">
+      <header class="modal-header"><div><h2 id="routeConfigTitle">路由配置</h2><p id="routeConfigDescription">配置模型请求的访问路径与默认请求体。</p></div><button class="btn btn-icon btn-ghost" type="button" data-close-modal="routeConfigModal" aria-label="关闭路由配置弹窗"><svg class="icon"><use href="#i-x"/></svg></button></header>
+      <form id="routeConfigForm" novalidate>
+        <div class="modal-body route-config-body">
+          <div class="route-model-context"><span class="route-model-icon" aria-hidden="true"><svg class="icon"><use href="#i-route"/></svg></span><div><span>当前模型</span><strong id="routeModelName">Qwen-72B</strong></div></div>
+          <div class="route-config-grid">
+            <div class="route-config-field"><label for="routePath">路由路径 <span class="required">*</span></label><input class="control mono" id="routePath" type="text" required placeholder="/v1/chat/completions" aria-describedby="routePathHelp routePathError"><p class="field-help" id="routePathHelp">以 / 开头，例如 /v1/chat/completions。</p><p class="route-field-error hidden" id="routePathError" role="alert">请输入以 / 开头且不含空格的路由路径。</p></div>
+          </div>
+          <section class="route-body-section" aria-labelledby="routeBodyLabel">
+            <div class="route-body-heading"><label id="routeBodyLabel" for="routeRequestBody">请求体 <span class="required">*</span></label><button class="btn route-format-button" id="formatRouteBody" type="button"><svg class="icon icon-sm"><use href="#i-code"/></svg>格式化 JSON</button></div>
+            <div class="route-editor-shell"><div class="route-editor-bar"><span>JSON</span><span>默认请求模板</span></div><textarea class="control route-request-editor" id="routeRequestBody" wrap="off" spellcheck="false" required aria-describedby="routeBodyError"></textarea></div>
+            <p class="route-field-error hidden" id="routeBodyError" role="alert">请输入合法的 JSON 请求体。</p>
+          </section>
+        </div>
+        <footer class="modal-footer"><div class="modal-actions"><button class="btn" type="button" data-close-modal="routeConfigModal">取消</button><button class="btn btn-primary" type="submit"><svg class="icon icon-sm"><use href="#i-check"/></svg>保存配置</button></div></footer>
+      </form>
     </section>
   </div>
 
@@ -162,8 +182,10 @@
     const addModelModal = document.getElementById('addModelModal');
     const editModal = document.getElementById('editModelModal');
     const yamlModal = document.getElementById('yamlModal');
+    const routeModal = document.getElementById('routeConfigModal');
     const addModelForm = document.getElementById('addModelForm');
     const editForm = document.getElementById('editModelForm');
+    const routeForm = document.getElementById('routeConfigForm');
     const modelGrid = document.querySelector('.model-grid');
     let activeModelCard = null;
     let lastTrigger = null;
@@ -178,7 +200,7 @@
 
     function closeModal(modal) {
       modal.classList.add('hidden');
-      if (packageSpecModal.classList.contains('hidden') && addModelModal.classList.contains('hidden') && editModal.classList.contains('hidden') && yamlModal.classList.contains('hidden')) document.body.style.overflow = '';
+      if ([packageSpecModal, addModelModal, editModal, yamlModal, routeModal].every(item => item.classList.contains('hidden'))) document.body.style.overflow = '';
       lastTrigger?.focus();
     }
 
@@ -265,7 +287,7 @@
       card.innerHTML = `
         <div class="model-card-head"><div class="model-identity">${modelMarkMarkup(name)}<div><h2 class="model-name">${escapeHtml(name)}</h2></div></div><div class="asset-version-count" aria-label="1 个版本"><strong>1</strong><span>个版本</span></div></div>
         <p class="model-summary">${escapeHtml(description)}</p>
-        <div class="card-actions"><button class="btn model-action" type="button" data-action="edit"><svg class="icon icon-sm"><use href="#i-edit"/></svg>编辑</button><button class="btn model-action" type="button" data-action="yaml"><svg class="icon icon-sm"><use href="#i-code"/></svg>部署 YAML</button><a class="btn model-action" href="sys_model_version_detail.html?model=${encodeURIComponent(modelId)}"><svg class="icon icon-sm"><use href="#i-clock"/></svg>版本历史</a><button class="btn btn-primary model-action" type="button" data-deploy-open data-deploy-mode="deploy" data-deploy-model="${escapeHtml(name)}" data-deploy-version="${escapeHtml(version)}" data-deploy-service="svc-${escapeHtml(modelId)}-prod"><svg class="icon icon-sm"><use href="#i-rocket"/></svg>部署服务</button></div>`;
+        <div class="card-actions"><button class="btn model-action" type="button" data-action="edit"><svg class="icon icon-sm"><use href="#i-edit"/></svg>编辑</button><button class="btn model-action" type="button" data-action="yaml"><svg class="icon icon-sm"><use href="#i-code"/></svg>部署 YAML</button><button class="btn model-action" type="button" data-action="route"><svg class="icon icon-sm"><use href="#i-route"/></svg>路由配置</button><a class="btn model-action" href="sys_model_version_detail.html?model=${encodeURIComponent(modelId)}"><svg class="icon icon-sm"><use href="#i-clock"/></svg>版本历史</a><button class="btn btn-primary model-action" type="button" data-deploy-open data-deploy-mode="deploy" data-deploy-model="${escapeHtml(name)}" data-deploy-version="${escapeHtml(version)}" data-deploy-service="svc-${escapeHtml(modelId)}-prod"><svg class="icon icon-sm"><use href="#i-rocket"/></svg>部署服务</button></div>`;
       modelGrid.prepend(card);
     }
 
@@ -296,12 +318,59 @@
       openModal(yamlModal, trigger);
     }
 
+    function defaultRequestBody(card) {
+      return JSON.stringify({
+        model: card.dataset.modelId,
+        messages: [{ role: 'user', content: '{{prompt}}' }],
+        temperature: 0.7,
+        stream: false
+      }, null, 2);
+    }
+
+    function setRouteError(control, error, invalid, message) {
+      if (message) error.textContent = message;
+      error.classList.toggle('hidden', !invalid);
+      if (invalid) control.setAttribute('aria-invalid', 'true');
+      else control.removeAttribute('aria-invalid');
+      return !invalid;
+    }
+
+    function validateRoutePath() {
+      const control = document.getElementById('routePath');
+      const value = control.value.trim();
+      return setRouteError(control, document.getElementById('routePathError'), !value.startsWith('/') || /\s/.test(value), '请输入以 / 开头且不含空格的路由路径。');
+    }
+
+    function validateRouteBody() {
+      const control = document.getElementById('routeRequestBody');
+      const value = control.value.trim();
+      let message = '请输入合法的 JSON 请求体。';
+      let invalid = !value;
+      if (!invalid) {
+        try { JSON.parse(value); }
+        catch (error) { invalid = true; message = `JSON 格式错误：${error.message}`; }
+      }
+      return setRouteError(control, document.getElementById('routeBodyError'), invalid, message);
+    }
+
+    function openRouteConfig(card, trigger) {
+      activeModelCard = card;
+      document.getElementById('routeModelName').textContent = card.dataset.name;
+      document.getElementById('routePath').value = card.dataset.routePath || '/v1/chat/completions';
+      document.getElementById('routeRequestBody').value = card.dataset.requestBody || defaultRequestBody(card);
+      routeModal.querySelectorAll('.route-field-error').forEach(error => error.classList.add('hidden'));
+      routeModal.querySelectorAll('[aria-invalid="true"]').forEach(control => control.removeAttribute('aria-invalid'));
+      openModal(routeModal, trigger);
+      requestAnimationFrame(() => document.getElementById('routePath').focus());
+    }
+
     modelGrid.addEventListener('click', event => {
       const button = event.target.closest('[data-action]');
       if (!button || !modelGrid.contains(button)) return;
       const card = button.closest('.model-card');
       if (button.dataset.action === 'edit') openEdit(card, button);
       if (button.dataset.action === 'yaml') openYaml(card, button);
+      if (button.dataset.action === 'route') openRouteConfig(card, button);
     });
 
     document.querySelector('[data-package-spec-open]').addEventListener('click', event => openModal(packageSpecModal, event.currentTarget));
@@ -397,9 +466,32 @@
       showToast('YAML 已保存', `${name} 的部署配置已更新。`);
     });
 
+    document.getElementById('routePath').addEventListener('blur', validateRoutePath);
+    document.getElementById('routeRequestBody').addEventListener('blur', validateRouteBody);
+    document.getElementById('formatRouteBody').addEventListener('click', () => {
+      const editor = document.getElementById('routeRequestBody');
+      if (!validateRouteBody()) { editor.focus(); return; }
+      editor.value = JSON.stringify(JSON.parse(editor.value), null, 2);
+      showToast('请求体已格式化', 'JSON 缩进已统一为 2 个空格。');
+    });
+    routeForm.addEventListener('submit', event => {
+      event.preventDefault();
+      const pathValid = validateRoutePath();
+      const bodyValid = validateRouteBody();
+      if (!pathValid || !bodyValid) {
+        document.getElementById(pathValid ? 'routeRequestBody' : 'routePath').focus();
+        return;
+      }
+      activeModelCard.dataset.routePath = document.getElementById('routePath').value.trim();
+      activeModelCard.dataset.requestBody = document.getElementById('routeRequestBody').value.trim();
+      const modelName = activeModelCard.dataset.name;
+      closeModal(routeModal);
+      showToast('路由配置已保存', `${modelName} 的请求路由与默认请求体已更新。`);
+    });
+
     document.querySelectorAll('[data-close-modal]').forEach(button => button.addEventListener('click', () => closeModal(document.getElementById(button.dataset.closeModal))));
-    [packageSpecModal, addModelModal, editModal, yamlModal].forEach(modal => modal.addEventListener('click', event => { if (event.target === modal) closeModal(modal); }));
-    document.addEventListener('keydown', event => { if (event.key === 'Escape') { if (!yamlModal.classList.contains('hidden')) closeModal(yamlModal); else if (!editModal.classList.contains('hidden')) closeModal(editModal); else if (!addModelModal.classList.contains('hidden')) closeModal(addModelModal); else if (!packageSpecModal.classList.contains('hidden')) closeModal(packageSpecModal); } });
+    [packageSpecModal, addModelModal, editModal, yamlModal, routeModal].forEach(modal => modal.addEventListener('click', event => { if (event.target === modal) closeModal(modal); }));
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') { if (!routeModal.classList.contains('hidden')) closeModal(routeModal); else if (!yamlModal.classList.contains('hidden')) closeModal(yamlModal); else if (!editModal.classList.contains('hidden')) closeModal(editModal); else if (!addModelModal.classList.contains('hidden')) closeModal(addModelModal); else if (!packageSpecModal.classList.contains('hidden')) closeModal(packageSpecModal); } });
     function showToast(title, message) {
       const toast = document.getElementById('toast');
       document.getElementById('toastTitle').textContent = title;

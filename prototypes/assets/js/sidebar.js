@@ -36,7 +36,8 @@
       label: '算力调度',
       items: [
         { file: 'sys_dispatch.html', label: '算力调度', icon: 'fa-sliders-h' },
-        { file: 'sys_task_list.html', label: '我的任务', icon: 'fa-tasks' }
+        { file: 'sys_task_list.html', label: '密钥管理', icon: 'fa-tasks' },
+        { file: 'sys_task_detail.html', label: '调用日志', icon: 'fa-stream' }
       ]
     },
     {
@@ -59,34 +60,26 @@
   ];
 
   const parentPages = {
-    'sys_task_detail.html': 'sys_task_list.html',
-    'task_config_modal.html': 'sys_dispatch.html',
     'sys_model_version_detail.html': 'sys_model_repo.html',
     'sys_model_training_detail.html': 'sys_model_training.html',
     'sys_training_records.html': 'sys_model_training.html',
-    'sys_model_deploy.html': 'sys_model_service.html',
-    'sys_cluster_list.html': 'sys_infrastructure_mgmt.html',
-    'sys_node_mgmt.html': 'sys_infrastructure_mgmt.html',
     'sys_node_detail.html': 'sys_infrastructure_mgmt.html'
   };
 
   const pageMeta = {
     'sys_dispatch.html': ['算力调度', '算力调度'],
-    'sys_task_list.html': ['算力调度', '我的任务'],
-    'sys_task_detail.html': ['算力调度', '任务详情'],
+    'sys_task_list.html': ['算力调度', '密钥管理'],
+    'sys_task_detail.html': ['算力调度', '调用日志'],
     'sys_model_repo.html': ['模型管理', '模型资产'],
     'sys_model_version_detail.html': ['模型管理', '模型版本详情'],
     'sys_model_training.html': ['模型管理', '模型训练'],
     'sys_model_training_detail.html': ['模型管理', '训练详情'],
     'sys_training_records.html': ['模型管理', '训练记录'],
     'sys_model_service.html': ['模型管理', '模型服务'],
-    'sys_model_deploy.html': ['模型管理', '模型部署'],
     'sys_model_monitor.html': ['模型管理', '模型监控'],
     'sys_resource_application.html': ['资源与运维', '资源申请'],
     'sys_resource_approval.html': ['资源与运维', '授权与审批'],
     'sys_infrastructure_mgmt.html': ['资源与运维', '集群与节点'],
-    'sys_cluster_list.html': ['资源与运维', '集群列表'],
-    'sys_node_mgmt.html': ['资源与运维', '节点管理'],
     'sys_node_detail.html': ['资源与运维', '节点详情'],
     'sys_request_tracing.html': ['资源与运维', '链路跟踪']
   };

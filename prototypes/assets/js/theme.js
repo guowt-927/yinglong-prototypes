@@ -47,6 +47,7 @@
   }
 
   function mountSwitcher() {
+    if (!document.body) return false;
     if (document.querySelector('.yl-theme-switcher')) return true;
     const switcher = createSwitcher();
     const header = document.querySelector('.global-header, .yl-global-topbar');

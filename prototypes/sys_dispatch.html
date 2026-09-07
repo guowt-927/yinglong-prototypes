@@ -8,9 +8,9 @@
   <link rel="stylesheet" href="assets/css/pages/sys_dispatch.css">
   <script src="assets/js/chart.js"></script>
   <link rel="stylesheet" href="assets/css/theme.css">
-  <script src="assets/js/theme.js"></script>
-  <link rel="stylesheet" href="assets/css/prototype-v4.css">
-  <script defer src="assets/js/prototype-v4.js"></script>
+  <script src="assets/js/theme.js?v=4"></script>
+  <link rel="stylesheet" href="assets/css/prototype-v4.css?v=20260906-sidebar-version">
+  <script defer src="assets/js/prototype-v4.js?v=20260906-sidebar-version"></script>
 </head>
 <body class="sidebar-led heading-spec-page">
   <svg width="0" height="0" aria-hidden="true" style="position:absolute">
@@ -46,7 +46,7 @@
     <a class="brand" href="../index.html" aria-label="应龙 AI算力基座首页"><span class="brand-mark" aria-hidden="true"><img src="../doc/logo/icon_01.svg" alt=""></span><span class="brand-copy"><span class="brand-name">应龙</span><span class="brand-subtitle">AI算力基座</span></span></a>
     <nav class="sidebar-nav">
       <section class="nav-group"><h2 class="nav-group-title">工作台</h2><a class="nav-item" href="../index.html"><svg class="icon"><use href="#i-dashboard"/></svg><span>系统概览</span></a></section>
-      <section class="nav-group"><h2 class="nav-group-title">算力调度</h2><a class="nav-item active" href="sys_dispatch.html" aria-current="page"><svg class="icon"><use href="#i-sliders"/></svg><span>算力调度</span></a><a class="nav-item" href="sys_task_list.html"><svg class="icon"><use href="#i-list"/></svg><span>我的任务</span></a></section>
+      <section class="nav-group"><h2 class="nav-group-title">算力调度</h2><a class="nav-item active" href="sys_dispatch.html" aria-current="page"><svg class="icon"><use href="#i-sliders"/></svg><span>算力调度</span></a><a class="nav-item" href="sys_task_list.html"><svg class="icon"><use href="#i-list"/></svg><span>密钥管理</span></a></section>
       <section class="nav-group"><h2 class="nav-group-title">模型管理</h2><a class="nav-item" href="sys_model_repo.html"><svg class="icon"><use href="#i-box"/></svg><span>模型资产</span></a><a class="nav-item" href="sys_model_service.html"><svg class="icon"><use href="#i-server"/></svg><span>模型服务</span></a><a class="nav-item" href="sys_model_training.html"><svg class="icon"><use href="#i-brain"/></svg><span>模型训练</span></a><a class="nav-item" href="sys_model_monitor.html"><svg class="icon"><use href="#i-activity"/></svg><span>模型监测</span></a></section>
       <section class="nav-group"><h2 class="nav-group-title">资源与运维</h2><a class="nav-item" href="sys_resource_application.html"><svg class="icon"><use href="#i-file"/></svg><span>资源申请</span></a><a class="nav-item" href="sys_resource_approval.html"><svg class="icon"><use href="#i-check-user"/></svg><span>授权审批</span></a><a class="nav-item" href="sys_infrastructure_mgmt.html"><svg class="icon"><use href="#i-network"/></svg><span>集群管理</span></a></section>
     </nav>
@@ -63,34 +63,47 @@
         <div class="section-heading overview-heading">
           <div><h1 class="page-title" id="dispatchTitle">算力调度</h1><p class="page-description">分别观察在线与离线调度的资源、请求、吞吐和任务运行情况。</p></div>
           <div class="toolbar-actions dispatch-toolbar">
-            <div class="header-control date-range-control"><span class="header-control-label">时间范围</span><button class="time-range-trigger" id="timeRangeTrigger" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="timeRangePopover"><svg class="icon"><use href="#i-calendar"/></svg><span class="mono" id="timeRangeText">2026-08-12 00:00:00 ~ 2026-08-13 23:59:59</span><svg class="icon icon-sm trigger-chevron"><use href="#i-chevron-down"/></svg></button>
-              <div class="precision-time-popover hidden" id="timeRangePopover" role="dialog" aria-modal="false" aria-labelledby="timePopoverTitle">
-                <div class="precision-time-head"><h2 id="timePopoverTitle">选择趋势时间范围</h2><button class="btn btn-icon btn-ghost" id="closeTimePopover" type="button" aria-label="关闭时间范围选择器"><svg class="icon"><use href="#i-x"/></svg></button></div>
-                <div class="precision-time-fields"><div class="time-input-field"><label for="chartStartTime">开始时间</label><input class="control mono" id="chartStartTime" type="datetime-local" step="1" value="2026-08-12T00:00:00" required></div><span aria-hidden="true">至</span><div class="time-input-field"><label for="chartEndTime">结束时间</label><input class="control mono" id="chartEndTime" type="datetime-local" step="1" value="2026-08-13T23:59:59" required></div></div>
-                <div class="precision-time-body"><aside class="time-presets" aria-label="快捷时间范围"><h3>快捷选择</h3><button type="button" data-time-preset="today">今天</button><button type="button" data-time-preset="yesterday">昨天</button><button type="button" data-time-preset="3d">近 3 天</button><button type="button" data-time-preset="7d">近 7 天</button><button type="button" data-time-preset="30d">近 30 天</button><button type="button" data-time-preset="month">本月</button></aside><div class="dual-calendar"><section class="calendar-panel"><header><button class="calendar-nav" id="calendarPrev" type="button" aria-label="查看上个月"><svg class="icon icon-sm"><use href="#i-chevron-left"/></svg></button><h3 id="calendarLeftTitle">2026 年 8 月</h3><span class="calendar-nav-spacer"></span></header><div class="calendar-grid calendar-weekdays" aria-hidden="true"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div><div class="calendar-grid" id="calendarLeftDays"></div></section><section class="calendar-panel"><header><span class="calendar-nav-spacer"></span><h3 id="calendarRightTitle">2026 年 9 月</h3><button class="calendar-nav" id="calendarNext" type="button" aria-label="查看下个月"><svg class="icon icon-sm"><use href="#i-chevron-right"/></svg></button></header><div class="calendar-grid calendar-weekdays" aria-hidden="true"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div><div class="calendar-grid" id="calendarRightDays"></div></section></div></div>
-                <div class="precision-time-footer"><p class="field-error hidden" id="chartTimeError" role="alert"></p><div class="precision-time-actions"><button class="btn btn-ghost" id="resetTimeRange" type="button">重置</button><button class="btn" id="cancelTimeRange" type="button">取消</button><button class="btn btn-primary" id="applyTimeRange" type="button"><svg class="icon icon-sm"><use href="#i-check"/></svg>确认应用</button></div></div>
-              </div>
-            </div>
-            <div class="header-control domain-control"><label class="header-control-label" for="domainSelect">当前调度域</label><select class="control" id="domainSelect"><option>Qwen-7B 混合算力池（8 Nodes）</option><option>Llama-3-70B 专属池（16 Nodes）</option></select></div>
+            <div class="header-control domain-control"><label class="header-control-label" for="domainSelect">目标模型</label><select class="control" id="domainSelect"><option>Qwen-7B 混合算力池（8 Nodes）</option><option>Llama-3-70B 专属池（16 Nodes）</option></select></div>
+            <div class="dispatch-view-tabs" role="group" aria-label="切换在线或离线调度视图"><button class="active" id="dispatchTabOnline" type="button" aria-pressed="true" data-dispatch-tab="online"><span class="status-dot online"></span>在线</button><button id="dispatchTabOffline" type="button" aria-pressed="false" data-dispatch-tab="offline"><span class="status-dot offline"></span>离线</button></div>
             <button class="btn btn-icon refresh-control" type="button" id="refreshButton" aria-label="刷新调度数据" title="刷新调度数据"><svg class="icon"><use href="#i-refresh"/></svg></button>
           </div>
         </div>
       </section>
 
-      <section class="metric-grid dispatch-metrics" aria-label="调度域核心指标">
-        <article class="card metric-card split-metric"><div class="metric-head"><span class="metric-label">硬件资源</span><svg class="icon muted"><use href="#i-cpu"/></svg></div><div class="metric-split"><div><span class="metric-type online">在线</span><strong>A100×12 · H800×8</strong></div><div><span class="metric-type offline">离线</span><strong>A100×4 · L40S×8</strong></div></div></article>
-        <article class="card metric-card split-metric"><div class="metric-head"><span class="metric-label">实例数</span></div><div class="metric-split"><div><span class="metric-type online">在线</span><strong>24 <small>个</small></strong></div><div><span class="metric-type offline">离线</span><strong>8 <small>个</small></strong></div></div></article>
-        <article class="card metric-card split-metric"><div class="metric-head"><span class="metric-label">底层实例积压</span></div><div class="metric-split"><div><span class="metric-type online">在线</span><strong>2 <small>个</small></strong></div><div><span class="metric-type offline">离线</span><strong>10 <small>个</small></strong></div></div></article>
-        <article class="card metric-card split-metric"><div class="metric-head"><span class="metric-label">总调用数</span><span class="metric-note">近 5 min 统计</span></div><div class="metric-split"><div><span class="metric-type online">在线</span><strong>1,284,759 <small>次</small></strong></div><div><span class="metric-type offline">离线</span><strong>486,320 <small>次</small></strong></div></div></article>
+      <section class="dispatch-metric-groups" id="dispatchMetrics" data-mode="online" aria-label="在线调度域核心指标">
+        <article class="card dispatch-metric-group">
+          <header class="dispatch-metric-group-head"><div><span class="dispatch-metric-group-icon"><svg class="icon"><use href="#i-cpu"/></svg></span><h2>资源供给</h2></div></header>
+          <div class="dispatch-metric-group-body resource-supply-grid">
+            <div class="dispatch-resource-stack"><div><span class="dispatch-metric-caption">硬件资源</span><strong class="dispatch-metric-value is-compact" id="metricHardware">A100×12 · H800×8</strong></div><div><span class="dispatch-metric-caption">实例数</span><strong class="dispatch-metric-value"><span id="metricInstances">24</span> <small>个</small></strong></div></div>
+            <div class="dispatch-gpu-summary"><div class="dispatch-utilization-ring" id="metricGpuRing" style="--metric-value:72" role="img" aria-label="在线调度近一小时平均 GPU 利用率 72%"><span id="metricGpu">72%</span></div><div><span class="dispatch-metric-caption">平均 GPU 利用率</span><strong class="dispatch-period">近 1 小时</strong></div></div>
+          </div>
+          <a class="dispatch-resource-link" href="sys_model_monitor.html" aria-label="前往模型监测查看详细资源使用趋势"><span>如需查看详细资源使用趋势，请前往</span><strong>模型监测</strong><svg class="icon icon-sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </article>
+        <article class="card dispatch-metric-group">
+          <header class="dispatch-metric-group-head"><div><span class="dispatch-metric-group-icon"><svg class="icon"><use href="#i-activity"/></svg></span><h2>请求负载</h2></div></header>
+          <div class="dispatch-metric-group-body request-load-grid">
+            <div><span class="dispatch-metric-caption">底层实例积压</span><div class="dispatch-backlog" id="metricBacklog" aria-label="在线调度：running 100 requests，waiting 3 requests"><span>running <strong id="metricRunning">100</strong> reqs</span><span>waiting <strong id="metricWaiting">3</strong> reqs</span></div></div>
+            <div><span class="dispatch-metric-caption">总调用数 · 近一小时</span><strong class="dispatch-metric-value"><span id="metricCalls">1,284,759</span> <small>次</small></strong></div>
+          </div>
+        </article>
       </section>
 
-      <section id="dispatchPanel" role="tabpanel" aria-labelledby="dispatchTabOnline">
-        <header class="dispatch-view-head"><h2 id="dispatchViewTitle">在线调度运行态势</h2><div class="dispatch-view-actions"><nav class="dispatch-view-tabs" role="tablist" aria-label="在线与离线调度视图"><button class="active" id="dispatchTabOnline" type="button" role="tab" aria-selected="true" aria-controls="dispatchPanel" data-dispatch-tab="online"><span class="status-dot online"></span>在线</button><button id="dispatchTabOffline" type="button" role="tab" aria-selected="false" aria-controls="dispatchPanel" data-dispatch-tab="offline"><span class="status-dot offline"></span>离线</button></nav><span class="badge badge-info" id="dispatchViewBadge">在线</span></div></header>
+      <section id="dispatchPanel">
+        <header class="dispatch-view-head"><h2 id="dispatchViewTitle">运行态势</h2><div class="dispatch-view-actions">
+          <div class="header-control date-range-control"><span class="header-control-label">时间范围</span><button class="time-range-trigger" id="timeRangeTrigger" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="timeRangePopover"><svg class="icon"><use href="#i-calendar"/></svg><span class="mono" id="timeRangeText">2026-08-12 00:00:00 ~ 2026-08-13 23:59:59</span><svg class="icon icon-sm trigger-chevron"><use href="#i-chevron-down"/></svg></button>
+            <div class="precision-time-popover hidden" id="timeRangePopover" role="dialog" aria-modal="false" aria-labelledby="timePopoverTitle">
+              <div class="precision-time-head"><h2 id="timePopoverTitle">选择趋势时间范围</h2><button class="btn btn-icon btn-ghost" id="closeTimePopover" type="button" aria-label="关闭时间范围选择器"><svg class="icon"><use href="#i-x"/></svg></button></div>
+              <div class="precision-time-fields"><div class="time-input-field"><label for="chartStartTime">开始时间</label><input class="control mono" id="chartStartTime" type="datetime-local" step="1" value="2026-08-12T00:00:00" required></div><span aria-hidden="true">至</span><div class="time-input-field"><label for="chartEndTime">结束时间</label><input class="control mono" id="chartEndTime" type="datetime-local" step="1" value="2026-08-13T23:59:59" required></div></div>
+              <div class="precision-time-body"><aside class="time-presets" aria-label="快捷时间范围"><h3>快捷选择</h3><button type="button" data-time-preset="today">今天</button><button type="button" data-time-preset="yesterday">昨天</button><button type="button" data-time-preset="3d">近 3 天</button><button type="button" data-time-preset="7d">近 7 天</button><button type="button" data-time-preset="30d">近 30 天</button><button type="button" data-time-preset="month">本月</button></aside><div class="dual-calendar"><section class="calendar-panel"><header><button class="calendar-nav" id="calendarPrev" type="button" aria-label="查看上个月"><svg class="icon icon-sm"><use href="#i-chevron-left"/></svg></button><h3 id="calendarLeftTitle">2026 年 8 月</h3><span class="calendar-nav-spacer"></span></header><div class="calendar-grid calendar-weekdays" aria-hidden="true"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div><div class="calendar-grid" id="calendarLeftDays"></div></section><section class="calendar-panel"><header><span class="calendar-nav-spacer"></span><h3 id="calendarRightTitle">2026 年 9 月</h3><button class="calendar-nav" id="calendarNext" type="button" aria-label="查看下个月"><svg class="icon icon-sm"><use href="#i-chevron-right"/></svg></button></header><div class="calendar-grid calendar-weekdays" aria-hidden="true"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div><div class="calendar-grid" id="calendarRightDays"></div></section></div></div>
+              <div class="precision-time-footer"><p class="field-error hidden" id="chartTimeError" role="alert"></p><div class="precision-time-actions"><button class="btn btn-ghost" id="resetTimeRange" type="button">重置</button><button class="btn" id="cancelTimeRange" type="button">取消</button><button class="btn btn-primary" id="applyTimeRange" type="button"><svg class="icon icon-sm"><use href="#i-check"/></svg>确认应用</button></div></div>
+            </div>
+          </div>
+          <span class="badge badge-info" id="dispatchViewBadge">在线</span></div></header>
 
         <section class="card table-card dispatch-task-table" aria-labelledby="queueTitle">
         <div class="table-toolbar">
           <div class="table-title"><h2 id="queueTitle">任务列表</h2></div>
-          <div class="filters"><span class="badge badge-info" id="taskModeBadge">在线任务</span><div class="search-wrap"><svg class="icon"><use href="#i-search"/></svg><input class="search-input" id="queueSearch" type="search" placeholder="搜索任务 ID 或任务名称" aria-label="搜索任务"><button class="search-clear hidden" id="queueSearchClear" type="button" aria-label="清空搜索"><svg class="icon icon-sm"><use href="#i-x"/></svg></button></div><span class="result-count">已检索到 <strong id="queueCount">0</strong> 项</span></div>
+          <div class="filters"><div class="search-wrap"><svg class="icon"><use href="#i-search"/></svg><input class="search-input" id="queueSearch" type="search" placeholder="搜索任务 ID 或任务名称" aria-label="搜索任务"><button class="search-clear hidden" id="queueSearchClear" type="button" aria-label="清空搜索"><svg class="icon icon-sm"><use href="#i-x"/></svg></button></div><span class="result-count">已检索到 <strong id="queueCount">0</strong> 项</span></div>
         </div>
         <div class="active-filters hidden" id="activeFilters"><span class="muted">当前条件</span><div id="filterChips"></div><button class="reset-link" id="resetFilters" type="button">重置筛选</button></div>
         <div class="table-scroll"><table><thead id="queueHead"></thead><tbody id="queueBody"></tbody></table></div>
@@ -107,7 +120,7 @@
         </article>
         <article class="card dispatch-chart-card" aria-labelledby="allocationTitle">
           <header class="dispatch-chart-header">
-            <div><h2 id="allocationTitle">任务实时算力分配占比（%）</h2></div>
+            <div><h2 id="allocationTitle">算力使用占比（%）</h2></div>
           </header>
           <div class="chart-legend-row"><div class="chart-legend-list" id="allocationLegend" aria-label="算力分配图图例"></div></div>
           <div class="dispatch-chart-canvas"><canvas id="allocationChart" role="img" aria-label="在线任务实时算力分配占比趋势图。">任务实时算力分配占比趋势图</canvas></div>
@@ -200,6 +213,11 @@
         { id: 'TASK-OFFLINE-012', name: 'Batch-财务报表分析', status: '排队中', statusClass: 'badge-warning', schedule: '动态权重', type: '离线', weight: '12.5%', calls: 486320, success: 486172, failures: 148, latency: '2.8 s', channel: 'normal' },
         { id: 'TASK-OFFLINE-021', name: '批量知识抽取', status: '运行中', statusClass: 'badge-success', schedule: '离线 VIP', type: '离线', weight: '30%', calls: 328640, success: 328617, failures: 23, latency: '1.6 s', channel: 'vip' }
       ]
+    };
+
+    const dispatchMetricData = {
+      online: { label: '在线', hardware: 'A100×12 · H800×8', instances: 24, running: 100, waiting: 3, gpu: 72, calls: '1,284,759' },
+      offline: { label: '离线', hardware: 'A100×4 · L40S×8', instances: 8, running: 60, waiting: 8, gpu: 48, calls: '486,320' }
     };
 
     const escapeHtml = value => String(value).replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[character]);
@@ -465,20 +483,20 @@
               backgroundColor: 'rgba(15,23,42,.94)',
               borderColor: '#334155',
               borderWidth: 1,
-              titleFont: { size: 11 },
-              bodyFont: { size: 10, family: 'Consolas, monospace' },
+              titleFont: { size: 12, family: '"Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif' },
+              bodyFont: { size: 12, family: 'Bahnschrift, "Arial Narrow", "Segoe UI", sans-serif' },
               padding: 10,
               callbacks: { label: context => isThroughput ? `${context.dataset.label}：${Math.round(context.parsed.y).toLocaleString()} Tokens/s` : (isRequest ? `${context.dataset.label}：${Math.round(context.parsed.y).toLocaleString()} req/5min` : `${context.dataset.label}：${context.parsed.y}%`) }
             }
           },
           scales: {
-            x: { grid: { color: '#E2E8F0', borderDash: [4, 4], drawTicks: false }, ticks: { color: '#94A3B8', font: { size: 9, family: 'Consolas, monospace' }, maxRotation: 0, autoSkip: true, maxTicksLimit: 7 } },
+            x: { grid: { color: '#E2E8F0', borderDash: [4, 4], drawTicks: false }, ticks: { color: '#64748B', font: { size: 12, family: 'Bahnschrift, "Arial Narrow", "Segoe UI", sans-serif' }, maxRotation: 0, autoSkip: true, maxTicksLimit: 7 } },
             y: isThroughput
-              ? { beginAtZero: true, suggestedMax: 4000000, grid: { color: '#E2E8F0', borderDash: [4, 4] }, ticks: { color: '#94A3B8', font: { size: 9 }, callback: value => value === 0 ? '0' : `${value / 1000000}M` }, title: { display: true, text: 'Tokens / s', align: 'end', color: '#64748B', font: { size: 9, weight: 'normal' } } }
+              ? { beginAtZero: true, suggestedMax: 4000000, grid: { color: '#E2E8F0', borderDash: [4, 4] }, ticks: { color: '#64748B', font: { size: 12, family: 'Bahnschrift, "Arial Narrow", "Segoe UI", sans-serif' }, callback: value => value === 0 ? '0' : `${value / 1000000}M` }, title: { display: true, text: 'Tokens / s', align: 'end', color: '#64748B', font: { size: 12, weight: 'normal', family: 'Bahnschrift, "Arial Narrow", "Segoe UI", sans-serif' } } }
               : (isRequest
-                ? { beginAtZero: true, grid: { color: '#E2E8F0', borderDash: [4, 4] }, ticks: { color: '#94A3B8', font: { size: 9 }, callback: value => value === 0 ? '0' : `${Math.round(value / 1000)}k` }, title: { display: true, text: '成功请求（req/5min）', align: 'end', color: '#64748B', font: { size: 9, weight: 'normal' } } }
-                : { beginAtZero: true, max: 100, grid: { color: '#E2E8F0', borderDash: [4, 4] }, ticks: { color: '#94A3B8', font: { size: 9 }, stepSize: 20, callback: value => `${value}%` } }),
-            ...(isRequest ? { y1: { beginAtZero: true, position: 'right', grid: { drawOnChartArea: false }, ticks: { color: '#94A3B8', font: { size: 9 } }, title: { display: true, text: '失败 / 拒绝（req/5min）', align: 'end', color: '#64748B', font: { size: 9, weight: 'normal' } } } } : {})
+                ? { beginAtZero: true, grid: { color: '#E2E8F0', borderDash: [4, 4] }, ticks: { color: '#64748B', font: { size: 12, family: 'Bahnschrift, "Arial Narrow", "Segoe UI", sans-serif' }, callback: value => value === 0 ? '0' : `${Math.round(value / 1000)}k` }, title: { display: true, text: '成功请求（req/5min）', align: 'end', color: '#64748B', font: { size: 12, weight: 'normal', family: 'Bahnschrift, "Arial Narrow", "Segoe UI", sans-serif' } } }
+                : { beginAtZero: true, max: 100, grid: { color: '#E2E8F0', borderDash: [4, 4] }, ticks: { color: '#64748B', font: { size: 12, family: 'Bahnschrift, "Arial Narrow", "Segoe UI", sans-serif' }, stepSize: 20, callback: value => `${value}%` } }),
+            ...(isRequest ? { y1: { beginAtZero: true, position: 'right', grid: { drawOnChartArea: false }, ticks: { color: '#64748B', font: { size: 12, family: 'Bahnschrift, "Arial Narrow", "Segoe UI", sans-serif' } }, title: { display: true, text: '失败 / 拒绝（req/5min）', align: 'end', color: '#64748B', font: { size: 12, weight: 'normal', family: 'Bahnschrift, "Arial Narrow", "Segoe UI", sans-serif' } } } } : {})
           }
         }
       });
@@ -503,20 +521,37 @@
       refreshDispatchChart('request');
     }
 
+    function renderDispatchMetrics() {
+      const data = dispatchMetricData[activeQueueType];
+      const modeLabel = `${data.label}调度`;
+      const metrics = document.getElementById('dispatchMetrics');
+      metrics.dataset.mode = activeQueueType;
+      metrics.setAttribute('aria-label', `${data.label}调度域核心指标`);
+      document.getElementById('metricHardware').textContent = data.hardware;
+      document.getElementById('metricInstances').textContent = data.instances;
+      document.getElementById('metricGpu').textContent = `${data.gpu}%`;
+      const gpuRing = document.getElementById('metricGpuRing');
+      gpuRing.style.setProperty('--metric-value', data.gpu);
+      gpuRing.setAttribute('aria-label', `${modeLabel}近一小时平均 GPU 利用率 ${data.gpu}%`);
+      document.getElementById('metricRunning').textContent = data.running;
+      document.getElementById('metricWaiting').textContent = data.waiting;
+      document.getElementById('metricCalls').textContent = data.calls;
+      document.getElementById('metricBacklog').setAttribute('aria-label', `${modeLabel}：running ${data.running} requests，waiting ${data.waiting} requests`);
+    }
+
     function switchDispatchTab(mode, syncUrl = true) {
       activeQueueType = mode === 'offline' ? 'offline' : 'online';
       Object.keys(dispatchChartState).forEach(chartName => { dispatchChartState[chartName].type = activeQueueType; });
       document.querySelectorAll('[data-dispatch-tab]').forEach(button => {
         const active = button.dataset.dispatchTab === activeQueueType;
         button.classList.toggle('active', active);
-        button.setAttribute('aria-selected', String(active));
+        button.setAttribute('aria-pressed', String(active));
       });
       const isOnline = activeQueueType === 'online';
-      const activeTabId = isOnline ? 'dispatchTabOnline' : 'dispatchTabOffline';
-      document.getElementById('dispatchPanel').setAttribute('aria-labelledby', activeTabId);
-      document.getElementById('dispatchViewTitle').textContent = isOnline ? '在线调度运行态势' : '离线调度运行态势';
+      document.getElementById('dispatchViewTitle').textContent = '运行态势';
       document.getElementById('dispatchViewBadge').textContent = isOnline ? '在线' : '离线';
-      document.getElementById('taskModeBadge').textContent = isOnline ? '在线任务' : '离线任务';
+      document.getElementById('dispatchViewBadge').classList.toggle('is-offline', !isOnline);
+      renderDispatchMetrics();
       searchInput.value = '';
       applyQueueFilters();
       initDispatchCharts();

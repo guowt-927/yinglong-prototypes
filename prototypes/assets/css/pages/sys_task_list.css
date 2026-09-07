@@ -51,8 +51,31 @@
 .code-block pre { min-height:190px; margin:0; padding:38px 14px 14px; color:#dbeafe; font:10px/1.65 var(--font-mono); white-space:pre-wrap; }
 .code-copy { position:absolute; top:8px; right:8px; z-index:1; padding:4px 7px; border:1px solid #334155; border-radius:4px; color:#cbd5e1; background:#1e293b; font-size:9px; }
 .call-drawer-footer { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:13px 20px; border-top:1px solid var(--border-soft); color:var(--muted); background:#f8fafc; font-size:10px; }
+.task-filter-toolbar { display:block; padding:0; }
+.task-filter-layout { width:100%; }
+.task-filter-primary { display:grid; min-height:62px; grid-template-columns:auto minmax(240px,1fr) auto; align-items:center; gap:12px; padding:11px 14px; }
+.task-filter-primary .table-title { min-width:130px; }
+.task-search { width:100%; max-width:320px; justify-self:end; }
+.task-filter-reset { min-height:34px; padding-right:11px; padding-left:11px; }
+.task-filter-secondary { display:flex; min-height:56px; flex-wrap:wrap; align-items:center; gap:12px 18px; padding:9px 14px 12px; border-top:1px solid var(--border-soft); background:#fbfdff; }
+.task-chip-group { display:flex; align-items:center; gap:7px; }
+.task-chip-label { margin-right:2px; color:var(--text); font-size:14px; font-weight:400; line-height:22px; white-space:nowrap; }
+.task-filter-chip { min-height:32px; padding:0 12px; border:1px solid transparent; border-radius:999px; color:var(--muted); background:#f1f5f9; cursor:pointer; transition:color .15s ease-out,border-color .15s ease-out,background .15s ease-out; }
+.task-filter-chip:hover { color:var(--text); background:#e8eef5; }
+.task-filter-chip:focus-visible { outline:3px solid rgba(38,110,255,.16); outline-offset:1px; }
+.task-filter-chip[aria-pressed="true"] { border-color:#bfdbfe; color:var(--brand); background:var(--brand-soft); font-weight:650; }
+.task-filter-tail { display:flex; min-width:0; flex:1 1 460px; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:8px; }
+.task-filter-select { display:inline-flex; min-width:190px; min-height:34px; align-items:center; overflow:hidden; border:1px solid var(--border); border-radius:6px; color:var(--text); background:#fff; transition:border-color .16s ease,box-shadow .16s ease; }
+.task-filter-select > span { flex:0 0 auto; padding-left:10px; font-size:14px; line-height:22px; white-space:nowrap; }
+.task-filter-select .control { min-width:0; min-height:32px; flex:1 1 auto; padding-left:8px; border:0; background-color:transparent; box-shadow:none; }
+.task-filter-select:hover { border-color:#cbd5e1; }
+.task-filter-select:focus-within { border-color:var(--brand); box-shadow:0 0 0 3px rgba(38,110,255,.1); }
 .task-overview { padding-bottom:2px; }
 .task-list-table { min-width:1240px; }
+.task-list-table.creation-columns-hidden { min-width:980px; }
+.task-list-table.creation-columns-hidden :is(th,td):nth-child(8),
+.task-list-table.creation-columns-hidden :is(th,td):nth-child(9) { display:none; }
+.creation-columns-toggle { flex:0 0 auto; white-space:nowrap; }
 .sequence-cell { color:var(--muted); text-align:center; }
 .api-key-wrap { display:flex; min-width:190px; align-items:center; gap:6px; }
 .api-key-cell { display:block; min-width:0; max-width:128px; overflow:hidden; color:#475569; font:10px/1.5 var(--font-mono); text-overflow:ellipsis; white-space:nowrap; }
@@ -60,5 +83,6 @@
 .api-key-copy:hover { border-color:var(--brand); background:var(--brand-soft); }
 .api-key-copy.is-copied { border-color:#a7f3d0; color:var(--success); background:var(--success-soft); }
 .task-actions { justify-content:flex-end; min-width:145px; }
-@media(max-width:620px){.call-drawer{width:100vw}.call-field-head,.call-example-head,.auth-help{align-items:flex-start;flex-direction:column}.parameter-actions{width:100%;justify-content:flex-start}.call-drawer-footer{align-items:stretch;flex-direction:column}.call-drawer-footer .btn{width:100%}}
+@media(max-width:900px){.task-filter-primary{grid-template-columns:1fr}.task-filter-primary .table-title,.task-filter-reset{width:100%}.task-filter-secondary{align-items:flex-start;flex-direction:column}.task-chip-group{flex-wrap:wrap}.task-filter-tail{width:100%;justify-content:flex-start}}
+@media(max-width:620px){.call-drawer{width:100vw}.call-field-head,.call-example-head,.auth-help{align-items:flex-start;flex-direction:column}.parameter-actions{width:100%;justify-content:flex-start}.call-drawer-footer{align-items:stretch;flex-direction:column}.call-drawer-footer .btn,.task-filter-select,.creation-columns-toggle{width:100%}}
 @media(prefers-reduced-motion:reduce){.call-drawer{transition:none}}

@@ -11,9 +11,6 @@
   };
 
   const descriptions = {
-    'sys_cluster_list.html': '查看集群运行状态、节点规模与资源利用率。',
-    'sys_model_deploy.html': '配置模型版本、运行资源与服务访问参数。',
-    'sys_node_mgmt.html': '维护集群节点、运行状态与资源分配。',
     'sys_training_records.html': '筛选和查看模型训练历史及产出版本。',
     'sys_request_tracing.html': '按时间与请求标识定位在线和离线调用链路。'
   };
@@ -30,10 +27,9 @@
     usercheck: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m16 11 2 2 4-4"/>',
     network: '<rect width="6" height="6" x="9" y="2" rx="1"/><rect width="6" height="6" x="3" y="16" rx="1"/><rect width="6" height="6" x="15" y="16" rx="1"/><path d="M12 8v4m-6 4v-2h12v2"/>',
     route: '<circle cx="6" cy="19" r="3"/><path d="M9 19h5.5a3.5 3.5 0 0 0 0-7h-5a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/>',
+    scrolltext: '<path d="M15 12h-5"/><path d="M15 8h-5"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/>',
     chevronleft: '<path d="m15 18-6-6 6-6"/>',
     chevrondown: '<path d="m6 9 6 6 6-6"/>',
-    user: '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
-    settings: '<path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.51a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2Z"/><circle cx="12" cy="12" r="3"/>',
     logout: '<path d="M10 17l5-5-5-5M15 12H3"/><path d="M14 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>',
     search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
     plus: '<path d="M12 5v14M5 12h14"/>',
@@ -63,12 +59,10 @@
     'index.html': 'dashboard',
     'sys_dispatch.html': 'dispatch',
     'sys_task_list.html': 'tasks',
-    'sys_task_detail.html': 'tasks',
-    'task_config_modal.html': 'tasks',
+    'sys_task_detail.html': 'logs',
     'sys_model_repo.html': 'repo',
     'sys_model_version_detail.html': 'repo',
     'sys_model_service.html': 'service',
-    'sys_model_deploy.html': 'service',
     'sys_model_training.html': 'training',
     'sys_model_training_detail.html': 'training',
     'sys_training_records.html': 'training',
@@ -76,19 +70,34 @@
     'sys_resource_application.html': 'application',
     'sys_resource_approval.html': 'approval',
     'sys_infrastructure_mgmt.html': 'infrastructure',
-    'sys_cluster_list.html': 'infrastructure',
-    'sys_node_mgmt.html': 'infrastructure',
     'sys_node_detail.html': 'infrastructure',
     'sys_request_tracing.html': 'tracing'
   };
 
   const activeKey = activeByFile[fileName] || '';
   const pageHref = name => inPrototypes ? name : 'prototypes/' + name;
+  const v1ScopeItems = [
+    '链路追踪',
+    '模型训练',
+    '模型仓库（模型资产）中的训练版本',
+    '添加模型资产',
+    '编辑模型资产',
+    '模型资产卡片中的版本数量',
+    '部署服务中的镜像选择',
+    '任务详情中的在线测试',
+    '集群管理中的加速卡容量',
+    '集群管理中的 GPU 利用率',
+    '算力调度中的请求数趋势',
+    '任务详情中的按天 / 按小时统计'
+  ];
+  const platformVersions = { frontend: 'v1.0.0', backend: 'v1.0.0' };
+  const v1ScopedNavKeys = new Set(['training', 'tracing']);
   const navGroups = [
     ['工作台', [['dashboard', 'dashboard', '系统概览', paths.dashboard]]],
     ['算力调度', [
       ['dispatch', 'sliders', '算力调度', pageHref('sys_dispatch.html')],
-      ['tasks', 'list', '我的任务', pageHref('sys_task_list.html')]
+      ['tasks', 'list', '任务管理', pageHref('sys_task_list.html')],
+      ['logs', 'scrolltext', '调用日志', pageHref('sys_task_detail.html')]
     ]],
     ['模型管理', [
       ['repo', 'box', '模型资产', pageHref('sys_model_repo.html')],
@@ -111,7 +120,10 @@
     const groups = navGroups.map(([title, items]) => {
       const links = items.map(([key, iconName, label, href]) => {
         const active = key === activeKey;
-        return '<a class="yl-v4-nav-item' + (active ? ' active' : '') + '" href="' + href + '" title="' + label + '"' + (active ? ' aria-current="page"' : '') + '>' + icon(iconName) + '<span>' + label + '</span></a>';
+        const outOfScope = v1ScopedNavKeys.has(key);
+        const scopeBadge = outOfScope ? '<small class="yl-v4-nav-scope">V1不含</small>' : '';
+        const title = outOfScope ? label + '（V1 暂不包含，页面仅作后续版本预览）' : label;
+        return '<a class="yl-v4-nav-item' + (active ? ' active' : '') + (outOfScope ? ' yl-v4-nav-item-planned' : '') + '" href="' + href + '" title="' + title + '"' + (active ? ' aria-current="page"' : '') + '>' + icon(iconName) + '<span>' + label + '</span>' + scopeBadge + '</a>';
       }).join('');
       return '<section class="yl-v4-nav-group"><h2 class="yl-v4-nav-title">' + title + '</h2>' + links + '</section>';
     }).join('');
@@ -124,18 +136,137 @@
       '</div>' +
       '<nav class="yl-v4-nav">' + groups + '</nav>' +
       '<div class="yl-v4-sidebar-footer">' +
+        '<button class="yl-v4-release-button" type="button" aria-haspopup="dialog" aria-label="查看 V1.0 范围说明">' +
+          icon('info', 'yl-v4-icon-sm') +
+          '<span><strong>V1.0 范围说明</strong><small>' + v1ScopeItems.length + ' 项暂不包含</small></span>' +
+        '</button>' +
+        '<div class="yl-v4-version-card" tabindex="0" aria-label="后端版本 ' + platformVersions.backend + '；前端版本 ' + platformVersions.frontend + '">' +
+          icon('server', 'yl-v4-icon-sm') +
+          '<span class="yl-v4-version-summary"><span>后端版本</span><b>' + platformVersions.backend + '</b></span>' +
+          '<span class="yl-v4-version-popover" id="ylV4VersionDetails" role="tooltip">' +
+            '<strong>系统版本</strong>' +
+            '<span><span>前端版本</span><b>' + platformVersions.frontend + '</b></span>' +
+            '<span><span>后端版本</span><b>' + platformVersions.backend + '</b></span>' +
+          '</span>' +
+        '</div>' +
         '<button class="yl-v4-user-button" type="button" aria-haspopup="menu" aria-expanded="false">' +
           '<span class="yl-v4-avatar" aria-hidden="true">管</span>' +
           '<span class="yl-v4-user-copy"><span class="yl-v4-user-name">资源管理员</span><span class="yl-v4-user-role">System Admin</span></span>' +
           icon('chevrondown', 'yl-v4-icon-sm') +
         '</button>' +
         '<div class="yl-v4-user-menu" role="menu" hidden>' +
-          '<button type="button" role="menuitem" data-v4-user-action="个人信息">' + icon('user', 'yl-v4-icon-sm') + '个人信息</button>' +
-          '<button type="button" role="menuitem" data-v4-user-action="账号设置">' + icon('settings', 'yl-v4-icon-sm') + '账号设置</button>' +
           '<button type="button" role="menuitem" data-v4-user-action="退出登录">' + icon('logout', 'yl-v4-icon-sm') + '退出登录</button>' +
         '</div>' +
       '</div>';
     return aside;
+  }
+
+  function createReleaseDialog() {
+    const backdrop = document.createElement('div');
+    backdrop.className = 'yl-v4-release-backdrop';
+    backdrop.hidden = true;
+    backdrop.innerHTML =
+      '<section class="yl-v4-release-dialog" role="dialog" aria-modal="true" aria-labelledby="ylV4ReleaseTitle" aria-describedby="ylV4ReleaseDescription">' +
+        '<header><div>' + icon('info') + '<div><span class="yl-v4-release-eyebrow">版本范围</span><h2 id="ylV4ReleaseTitle">V1.0 版本说明</h2></div></div>' +
+          '<button class="yl-v4-release-close" type="button" aria-label="关闭版本说明">' + icon('x') + '</button></header>' +
+        '<div class="yl-v4-release-body"><p id="ylV4ReleaseDescription">以下能力已在原型中保留为后续版本方案预览，但不属于 V1.0 的开发、交付和验收范围。</p>' +
+          '<ul>' + v1ScopeItems.map(item => '<li>' + icon('check', 'yl-v4-icon-sm') + '<span>' + item + '</span><small>后续版本</small></li>').join('') + '</ul>' +
+          '<p class="yl-v4-release-footnote">原型中的对应入口均已标注“V1不含”；相关页面和交互仅用于方案沟通。</p></div>' +
+        '<footer><button class="yl-v4-release-confirm" type="button">我知道了</button></footer>' +
+      '</section>';
+    document.body.appendChild(backdrop);
+    return backdrop;
+  }
+
+  function createScopeBadge(label) {
+    const badge = document.createElement('span');
+    badge.className = 'yl-v4-scope-badge';
+    badge.textContent = label || 'V1不含';
+    return badge;
+  }
+
+  function addPageScopeNotice(title, description) {
+    const main = document.querySelector('main');
+    if (!main || main.querySelector('.yl-v4-scope-notice')) return;
+    const notice = document.createElement('aside');
+    notice.className = 'yl-v4-scope-notice';
+    notice.setAttribute('role', 'note');
+    const descriptionHtml = description ? '<p>' + description + '</p>' : '';
+    notice.innerHTML = icon('info') + '<div><strong>' + title + '</strong>' + descriptionHtml + '</div>';
+    const pageHeading = document.querySelector('h1');
+    const headingHost = pageHeading && pageHeading.closest('section, header');
+    if (headingHost) headingHost.insertAdjacentElement('afterend', notice);
+    else main.prepend(notice);
+  }
+
+  function markScopedControl(control, label) {
+    if (!control || control.querySelector('.yl-v4-scope-badge')) return;
+    control.classList.add('yl-v4-scoped-control');
+    control.appendChild(createScopeBadge(label));
+    const currentTitle = control.getAttribute('title') || control.textContent.replace(/V1不含/g, '').trim();
+    control.setAttribute('title', currentTitle + '（V1 暂不包含，仅作后续版本方案预览）');
+  }
+
+  function markScopedMetric(metric, metricName) {
+    if (!metric || metric.querySelector('.yl-v4-scope-badge')) return;
+    metric.classList.add('yl-v4-scoped-metric');
+    metric.appendChild(createScopeBadge());
+    const currentLabel = metric.getAttribute('aria-label') || metric.textContent.replace(/V1不含/g, '').trim();
+    metric.setAttribute('aria-label', currentLabel + '，V1 暂不包含');
+    metric.setAttribute('title', (metricName || '版本数量') + '（V1 暂不包含，仅作后续版本方案预览）');
+  }
+
+  function annotateModelAssetCard(card) {
+    card.querySelectorAll('[data-action="edit"]').forEach(control => markScopedControl(control));
+    card.querySelectorAll('a[href*="sys_model_version_detail.html"]').forEach(control => markScopedControl(control));
+    card.querySelectorAll('.asset-version-count').forEach(markScopedMetric);
+  }
+
+  function annotateV1Scope() {
+    if (fileName === 'sys_request_tracing.html') {
+      addPageScopeNotice('V1版本 暂不包含链路追踪');
+    }
+    if (fileName === 'sys_model_training.html') {
+      addPageScopeNotice('V1版本 暂不包含模型训练');
+    }
+    if (fileName === 'sys_model_training_detail.html' || fileName === 'sys_training_records.html') {
+      addPageScopeNotice('V1 暂不包含模型训练', '训练任务、训练详情和训练记录均为后续版本方案预览，不属于 V1.0 的开发、交付和验收范围。');
+    }
+    if (fileName === 'sys_model_repo.html') {
+      document.querySelectorAll('[data-add-model-open], #submitAddModel').forEach(control => markScopedControl(control));
+      document.getElementById('addModelTitle')?.appendChild(createScopeBadge());
+      document.querySelectorAll('#editModelForm button[type="submit"]').forEach(control => markScopedControl(control));
+      document.getElementById('editModelTitle')?.appendChild(createScopeBadge());
+      const modelGrid = document.querySelector('.model-grid');
+      modelGrid?.querySelectorAll('.model-card').forEach(annotateModelAssetCard);
+      if (modelGrid) {
+        new MutationObserver(records => records.forEach(record => record.addedNodes.forEach(node => {
+          if (node.nodeType === Node.ELEMENT_NODE && node.matches('.model-card')) annotateModelAssetCard(node);
+        }))).observe(modelGrid, { childList: true });
+      }
+    }
+    if (fileName === 'sys_model_version_detail.html') {
+      addPageScopeNotice('V1 暂不包含模型资产的训练版本', '当前版本历史、训练记录追溯及相关操作仅作后续版本方案预览，不属于 V1.0 的交付和验收范围。');
+    }
+    if (fileName === 'sys_task_detail.html') {
+      const onlineTest = document.getElementById('openOnlineTest');
+      markScopedControl(onlineTest);
+      markScopedControl(document.getElementById('sendTestRequest'));
+      document.getElementById('onlineTestTitle')?.appendChild(createScopeBadge());
+      const statisticsModeLabel = document.getElementById('statisticsModeLabel');
+      markScopedControl(statisticsModeLabel, '按天 / 按小时 V1不含');
+      statisticsModeLabel?.setAttribute('title', '按天和按小时统计（V1 暂不包含，仅作后续版本方案预览）');
+    }
+    if (fileName === 'sys_infrastructure_mgmt.html') {
+      markScopedMetric(document.getElementById('statGpu')?.closest('article'), '加速卡容量');
+      markScopedMetric(document.getElementById('gpuUtilizationHeader'), 'GPU 利用率');
+    }
+    if (fileName === 'sys_node_detail.html') {
+      markScopedMetric(document.getElementById('nodeGpuUtilization'), 'GPU 利用率');
+    }
+    if (fileName === 'sys_dispatch.html') {
+      markScopedMetric(document.getElementById('requestTitle'), '请求数趋势');
+    }
   }
 
   function normalizeLegacyHeader() {
@@ -218,8 +349,30 @@
     const sidebar = createSidebar();
     document.body.prepend(sidebar);
     const collapseButton = sidebar.querySelector('.yl-v4-collapse');
+    const releaseButton = sidebar.querySelector('.yl-v4-release-button');
     const userButton = sidebar.querySelector('.yl-v4-user-button');
     const userMenu = sidebar.querySelector('.yl-v4-user-menu');
+    const releaseBackdrop = createReleaseDialog();
+    const releaseDialog = releaseBackdrop.querySelector('.yl-v4-release-dialog');
+    const releaseClose = releaseBackdrop.querySelector('.yl-v4-release-close');
+    const releaseConfirm = releaseBackdrop.querySelector('.yl-v4-release-confirm');
+    let releaseTrigger = null;
+
+    function closeReleaseDialog() {
+      releaseBackdrop.hidden = true;
+      document.body.classList.remove('yl-v4-modal-open');
+      releaseTrigger?.focus();
+    }
+
+    releaseButton.addEventListener('click', () => {
+      releaseTrigger = releaseButton;
+      releaseBackdrop.hidden = false;
+      document.body.classList.add('yl-v4-modal-open');
+      releaseClose.focus();
+    });
+    releaseClose.addEventListener('click', closeReleaseDialog);
+    releaseConfirm.addEventListener('click', closeReleaseDialog);
+    releaseBackdrop.addEventListener('click', event => { if (event.target === releaseBackdrop) closeReleaseDialog(); });
 
     if (localStorage.getItem('yl-v4-sidebar-collapsed') === 'true') {
       document.body.classList.add('yl-v4-sidebar-is-collapsed');
@@ -256,6 +409,10 @@
       }
     });
     document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && !releaseBackdrop.hidden) {
+        closeReleaseDialog();
+        return;
+      }
       if (event.key === 'Escape' && !userMenu.hidden) {
         userMenu.hidden = true;
         userButton.setAttribute('aria-expanded', 'false');
@@ -265,6 +422,7 @@
 
     replaceLegacyIcons();
     markDecisionActions();
+    annotateV1Scope();
   }
 
   initializeShell();

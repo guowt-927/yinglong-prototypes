@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>应龙大模型推理平台 - V4 规范同步预览</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CSS 本地运行文件，支持离线预览 -->
+  <script src="../prototypes/assets/vendor/tailwindcss-3.4.17.js"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -50,30 +50,30 @@
 
   <!-- Desktop Sidebar: 224px expanded / 64px compact -->
   <aside class="app-sidebar" aria-label="主导航">
-    <a href="/index.html" class="sidebar-brand min-h-[68px] px-4 border-b border-slate-200 flex items-center gap-2.5 bg-white text-slate-900 no-underline focus-ring">
-      <img src="doc/logo/icon_01.svg" alt="应龙" class="w-[38px] h-[38px] object-contain shrink-0">
+    <a href="../index.html" class="sidebar-brand min-h-[68px] px-4 border-b border-slate-200 flex items-center gap-2.5 bg-white text-slate-900 no-underline focus-ring">
+      <img src="logo/icon_01.svg" alt="应龙" class="w-[38px] h-[38px] object-contain shrink-0">
       <span class="sidebar-copy"><span class="block font-bold text-sm text-slate-900 whitespace-nowrap leading-[22px]">应龙</span><span class="block text-xs text-slate-500 whitespace-nowrap leading-[18px]">AI 算力基座</span></span>
     </a>
     <nav class="nav-scroll space-y-4" aria-label="业务导航">
       <div class="space-y-1"><div class="px-2.5 text-xs font-semibold text-slate-500 sidebar-group-title leading-[18px]">工作台</div>
-        <a href="/index.html" aria-current="page" class="sidebar-link flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm font-semibold bg-[#EFF6FF] text-[#266EFF] focus-ring leading-[22px]"><svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2 7-7 7 7 2 2M5 10v10h14V10M9 20v-6h6v6"></path></svg><span class="sidebar-copy">系统概览</span></a>
+        <a href="../index.html" aria-current="page" class="sidebar-link flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm font-semibold bg-[#EFF6FF] text-[#266EFF] focus-ring leading-[22px]"><svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2 7-7 7 7 2 2M5 10v10h14V10M9 20v-6h6v6"></path></svg><span class="sidebar-copy">系统概览</span></a>
       </div>
       <div class="space-y-1"><div class="px-2.5 text-xs font-semibold text-slate-500 sidebar-group-title leading-[18px]">算力调度</div>
-        <a href="/prototypes/sys_dispatch.html" class="sidebar-link flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100 focus-ring leading-[22px]"><svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span class="sidebar-copy">算力调度</span></a>
-        <a href="/prototypes/sys_task_list.html" class="sidebar-link flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100 focus-ring leading-[22px]"><svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5h6M9 9h6M9 13h4M7 3h10a2 2 0 012 2v14H5V5a2 2 0 012-2z"></path></svg><span class="sidebar-copy">我的任务</span></a>
+        <a href="../prototypes/sys_dispatch.html" class="sidebar-link flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100 focus-ring leading-[22px]"><svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span class="sidebar-copy">算力调度</span></a>
+        <a href="../prototypes/sys_task_list.html" class="sidebar-link flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100 focus-ring leading-[22px]"><svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5h6M9 9h6M9 13h4M7 3h10a2 2 0 012 2v14H5V5a2 2 0 012-2z"></path></svg><span class="sidebar-copy">我的任务</span></a>
       </div>
       <div class="space-y-1"><div class="px-2.5 text-xs font-semibold text-slate-500 sidebar-group-title leading-[18px]">模型管理</div>
-        <a href="/prototypes/sys_model_repo.html" class="sidebar-link flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100 focus-ring leading-[22px]"><svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16v12H4zM8 10h8M8 14h5"></path></svg><span class="sidebar-copy">模型资产</span></a>
-        <a href="/prototypes/sys_model_service.html" class="sidebar-link flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100 focus-ring leading-[22px]"><svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v18M3 12h18M5 5l14 14M19 5L5 19"></path></svg><span class="sidebar-copy">模型服务</span></a>
-        <a href="/prototypes/sys_model_training.html" class="sidebar-link flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100 focus-ring leading-[22px]"><svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3l9 5-9 5-9-5 9-5zM5 11v5l7 4 7-4v-5"></path></svg><span class="sidebar-copy">模型训练</span></a>
+        <a href="../prototypes/sys_model_repo.html" class="sidebar-link flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100 focus-ring leading-[22px]"><svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16v12H4zM8 10h8M8 14h5"></path></svg><span class="sidebar-copy">模型资产</span></a>
+        <a href="../prototypes/sys_model_service.html" class="sidebar-link flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100 focus-ring leading-[22px]"><svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v18M3 12h18M5 5l14 14M19 5L5 19"></path></svg><span class="sidebar-copy">模型服务</span></a>
+        <a href="../prototypes/sys_model_training.html" class="sidebar-link flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100 focus-ring leading-[22px]"><svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3l9 5-9 5-9-5 9-5zM5 11v5l7 4 7-4v-5"></path></svg><span class="sidebar-copy">模型训练</span></a>
         
-        <a href="/prototypes/sys_model_monitor.html" class="sidebar-link flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100 focus-ring leading-[22px]"><svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h4l2-5 4 10 2-5h6"></path></svg><span class="sidebar-copy">模型监测</span></a>
+        <a href="../prototypes/sys_model_monitor.html" class="sidebar-link flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100 focus-ring leading-[22px]"><svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h4l2-5 4 10 2-5h6"></path></svg><span class="sidebar-copy">模型监测</span></a>
       </div>
       <div class="space-y-1"><div class="px-2.5 text-xs font-semibold text-slate-500 sidebar-group-title leading-[18px]">资源与运维</div>
-        <a href="/prototypes/sys_resource_application.html" class="sidebar-link flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100 focus-ring leading-[22px]"><svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14M5 12h14"></path></svg><span class="sidebar-copy">资源申请</span></a>
-        <a href="/prototypes/sys_resource_approval.html" class="sidebar-link flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100 focus-ring leading-[22px]"><svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="sidebar-copy">授权审批</span></a>
-        <a href="/prototypes/sys_infrastructure_mgmt.html" class="sidebar-link flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100 focus-ring leading-[22px]"><svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h16v6H4zM4 14h16v6H4z"></path></svg><span class="sidebar-copy">集群管理</span></a>
-        <a href="/prototypes/sys_request_tracing.html" class="sidebar-link flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100 focus-ring leading-[22px]"><svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12h16M12 4v16M7 7l10 10M17 7L7 17"></path></svg><span class="sidebar-copy">链路追踪</span></a>
+        <a href="../prototypes/sys_resource_application.html" class="sidebar-link flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100 focus-ring leading-[22px]"><svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14M5 12h14"></path></svg><span class="sidebar-copy">资源申请</span></a>
+        <a href="../prototypes/sys_resource_approval.html" class="sidebar-link flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100 focus-ring leading-[22px]"><svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="sidebar-copy">授权审批</span></a>
+        <a href="../prototypes/sys_infrastructure_mgmt.html" class="sidebar-link flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100 focus-ring leading-[22px]"><svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h16v6H4zM4 14h16v6H4z"></path></svg><span class="sidebar-copy">集群管理</span></a>
+        <a href="../prototypes/sys_request_tracing.html" class="sidebar-link flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100 focus-ring leading-[22px]"><svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12h16M12 4v16M7 7l10 10M17 7L7 17"></path></svg><span class="sidebar-copy">链路追踪</span></a>
       </div>
     </nav>
     <div class="sidebar-user">
@@ -809,27 +809,27 @@
                   </div>
 
                   <!-- Dropdown 1: Status -->
-                  <select aria-label="状态筛选" class="text-sm px-2.5 py-1.5 bg-white border border-slate-200 rounded-md text-slate-700 focus:border-[#266EFF] outline-none cursor-pointer leading-[22px]">
+                  <label class="inline-flex items-center gap-2 text-sm text-slate-700 leading-[22px]" for="v4-status-filter"><span class="whitespace-nowrap">状态</span><select id="v4-status-filter" class="text-sm px-2.5 py-1.5 bg-white border border-slate-200 rounded-md text-slate-700 focus:border-[#266EFF] outline-none cursor-pointer leading-[22px]">
                     <option>全部状态 (All Status)</option>
                     <option selected>运行中 (Running)</option>
                     <option>显存预警 (High VRAM)</option>
                     <option>节点故障 (Failed)</option>
-                  </select>
+                  </select></label>
 
                   <!-- Dropdown 2: Resource Pool -->
-                  <select aria-label="资源池筛选" class="text-sm px-2.5 py-1.5 bg-white border border-slate-200 rounded-md text-slate-700 focus:border-[#266EFF] outline-none cursor-pointer leading-[22px]">
+                  <label class="inline-flex items-center gap-2 text-sm text-slate-700 leading-[22px]" for="v4-pool-filter"><span class="whitespace-nowrap">资源池</span><select id="v4-pool-filter" class="text-sm px-2.5 py-1.5 bg-white border border-slate-200 rounded-md text-slate-700 focus:border-[#266EFF] outline-none cursor-pointer leading-[22px]">
                     <option>全部资源池</option>
                     <option selected>主线公用池</option>
                     <option>部门专用池</option>
                     <option>实验试用池</option>
-                  </select>
+                  </select></label>
 
                   <!-- Dropdown 3: Hardware -->
-                  <select aria-label="硬件筛选" class="text-sm px-2.5 py-1.5 bg-white border border-slate-200 rounded-md text-slate-700 focus:border-[#266EFF] outline-none cursor-pointer leading-[22px]">
+                  <label class="inline-flex items-center gap-2 text-sm text-slate-700 leading-[22px]" for="v4-hardware-filter"><span class="whitespace-nowrap">硬件</span><select id="v4-hardware-filter" class="text-sm px-2.5 py-1.5 bg-white border border-slate-200 rounded-md text-slate-700 focus:border-[#266EFF] outline-none cursor-pointer leading-[22px]">
                     <option>全部 GPU 卡</option>
                     <option>NVIDIA A100 80G</option>
                     <option>NVIDIA H800 80G</option>
-                  </select>
+                  </select></label>
 
                   <button type="button" data-filter-reset class="text-sm text-slate-500 hover:text-rose-600 flex items-center gap-1 ml-1 cursor-pointer leading-[22px]">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>

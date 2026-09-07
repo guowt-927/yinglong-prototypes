@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="assets/css/pages/sys_node_detail.css">
   <link rel="stylesheet" href="assets/css/theme.css">
   <script src="assets/js/theme.js"></script>
-  <link rel="stylesheet" href="assets/css/prototype-v4.css">
-  <script defer src="assets/js/prototype-v4.js"></script>
+  <link rel="stylesheet" href="assets/css/prototype-v4.css?v=20260906-sidebar-version">
+  <script defer src="assets/js/prototype-v4.js?v=20260906-sidebar-version"></script>
 </head>
 <body class="sidebar-led heading-spec-page">
   <svg width="0" height="0" aria-hidden="true" style="position:absolute">
@@ -34,7 +34,7 @@
     <a class="brand" href="../index.html" aria-label="应龙 AI算力基座首页"><span class="brand-mark" aria-hidden="true"><img src="../doc/logo/icon_01.svg" alt=""></span><span class="brand-copy"><span class="brand-name">应龙</span><span class="brand-subtitle">AI算力基座</span></span></a>
     <nav class="sidebar-nav">
       <section class="nav-group"><h2 class="nav-group-title">工作台</h2><a class="nav-item" href="../index.html"><svg class="icon"><use href="#i-dashboard"/></svg><span>系统概览</span></a></section>
-      <section class="nav-group"><h2 class="nav-group-title">算力调度</h2><a class="nav-item" href="sys_dispatch.html"><svg class="icon"><use href="#i-sliders"/></svg><span>算力调度</span></a><a class="nav-item" href="sys_task_list.html"><svg class="icon"><use href="#i-list"/></svg><span>我的任务</span></a></section>
+      <section class="nav-group"><h2 class="nav-group-title">算力调度</h2><a class="nav-item" href="sys_dispatch.html"><svg class="icon"><use href="#i-sliders"/></svg><span>算力调度</span></a><a class="nav-item" href="sys_task_list.html"><svg class="icon"><use href="#i-list"/></svg><span>密钥管理</span></a></section>
       <section class="nav-group"><h2 class="nav-group-title">模型管理</h2><a class="nav-item" href="sys_model_repo.html"><svg class="icon"><use href="#i-box"/></svg><span>模型资产</span></a><a class="nav-item" href="sys_model_service.html"><svg class="icon"><use href="#i-server"/></svg><span>模型服务</span></a><a class="nav-item" href="sys_model_training.html"><svg class="icon"><use href="#i-brain"/></svg><span>模型训练</span></a><a class="nav-item" href="sys_model_monitor.html"><svg class="icon"><use href="#i-activity"/></svg><span>模型监测</span></a></section>
       <section class="nav-group"><h2 class="nav-group-title">资源与运维</h2><a class="nav-item" href="sys_resource_application.html"><svg class="icon"><use href="#i-file"/></svg><span>资源申请</span></a><a class="nav-item" href="sys_resource_approval.html"><svg class="icon"><use href="#i-check-user"/></svg><span>授权审批</span></a><a class="nav-item active" href="sys_infrastructure_mgmt.html" aria-current="page"><svg class="icon"><use href="#i-network"/></svg><span>集群管理</span></a></section>
     </nav>
@@ -50,7 +50,7 @@
     <main class="page-canvas heading-spec-canvas" id="main-content">
       <section class="section node-heading" aria-labelledby="nodeDetailTitle">
         <div class="section-heading overview-heading">
-          <div><h1 class="page-title" id="nodeDetailTitle">node-01</h1><p class="page-description"><span class="mono">192.168.1.101</span> · 生产环境集群 A · 最近同步于 14:32:18</p></div>
+          <div><h1 class="page-title" id="nodeDetailTitle">node-01</h1><p class="page-description"><span class="mono">192.168.1.101</span> · 生产环境集群 A </p></div>
           <div class="toolbar-actions"><span class="badge badge-success"><span class="status-dot"></span>在线</span><a class="btn" href="sys_infrastructure_mgmt.html"><svg class="icon icon-sm"><use href="#i-arrow-left"/></svg>返回集群管理</a></div>
         </div>
       </section>
@@ -59,11 +59,11 @@
         <div class="node-identity">
           <span class="identity-label">加速卡型号</span>
           <strong>NVIDIA A100</strong>
-          <span class="identity-meta">Worker 节点 · 运行 14 天</span>
+          
         </div>
         <article class="node-stat"><span>GPU 容量</span><strong><em>2</em> / 8</strong><small>可用 / 总数</small></article>
-        <article class="node-stat attention"><span>GPU 利用率</span><strong>64%</strong><small>当前资源水位</small></article>
-        <article class="node-stat"><span>运行实例</span><strong>2</strong><small>全部正常运行</small></article>
+        <article class="node-stat attention" id="nodeGpuUtilization"><span>GPU 利用率</span><strong>64%</strong><small>当前资源水位</small></article>
+        <article class="node-stat"><span>显存占用率</span><strong>78%</strong><small>当前显存占用</small></article>
       </section>
 
       <section class="node-detail-workspace">
